@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Make Your Site Move With CSS</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+	
+	<style type="text/css">
+		html
+		{
+			height: 100%;
+			overflow: hidden;
+		}
+
+		body
+		{
+			height: 100%;
+			perspective: 1px;
+			transform-style: preserve-3d;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			margin: 0px;
+			padding: 0px;
+			font-family: arial;
+			font-size: 20pt;
+		}
+		img
+		{
+			border: 0px;
+		}
+		.light
+		{
+			color: #ffffff;
+			text-shadow: 1px 1px 10px #000000;
+		}
+		.dark
+		{
+			color: #000000;
+			text-shadow: 1px 1px 12px #ffffff;
+		}
+		
+		
+		.slide
+		{
+			position: relative;
+			padding: 10vh 10%;
+			min-height: 100vh;
+			width: 100vw;
+			box-sizing: border-box;
+			transform-style: inherit;
+		}
+		.slide.short
+		{
+			padding: 25vh 10%;
+		}
+		.slide:before
+		{
+			content: '';
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+		}
+		.slide a
+		{
+			position: relative;
+		}
+
+		#slide1
+		{
+			background: #252530;
+			background-attachment: fixed;
+		}
+		#slide2:before
+		{
+			background: #f7be0c url(smiley_128.png) no-repeat 420px 230px;
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide10
+		{
+			background: url(mochaGrunge.png);
+		}
+		#slide20:before
+		{
+			background: url(TKN.CB.lightbrownplanks.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide21
+		{
+			background: url(abstract-colorful-texture-background009.jpg);
+		}
+		#slide22:before
+		{
+			background: #0047e5 url(beautiful_field.jpg);
+			background-size: 1920px;
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide23
+		{
+			background: url(escheresque_ste.png);
+		}
+		#slide24:before
+		{
+			background: url(abstract-q-c-1920-1080-7.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide25
+		{
+			background: url(paper_3.png);
+		}
+		#slide26:before
+		{
+			background: url(XST.CB.varnishedwood.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide27
+		{
+			background: url(XST.CB.whitewashedwall.jpg);
+		}
+
+		#slide30:before
+		{
+			background: url(DCM.CB.chunkygrass.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide31
+		{
+			background: url(DCM.CB.sand.jpg);
+		}
+		#slide32:before
+		{
+			background: url(ROCS.CB.bluepaint.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide33
+		{
+			background: url(SBK.CB.orangepaper.jpg);
+		}
+		#slide34:before
+		{
+			background: url(TGRS.CB.metallozenge.jpg);
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+		#slide50
+		{
+			background: #0022aa;
+		}
+		#slide51:before
+		{
+			background: #ffffff;
+			transform: translateZ(-1px) scale(2);
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+	<style type="text/css">
+		#mainNav
+		{
+			position: fixed;
+			z-index: 10;
+			width: 250px;
+			min-height: 100vh;
+			overflow-y: auto;
+			background: #272727;
+			transition: transform 0.5s ease-in-out;
+			transform: translateX(-100%);
+		}
+		#mainNav a:first-child
+		{
+			margin-top: 46px;
+		}
+		#mainNav a
+		{
+			display: block;
+			transform: translateX(-3.5em);
+			padding: 10px 15px;
+			border-top: 1px solid #484848;
+			border-bottom: 1px solid #2E2E2E;
+			font-size: 16pt;
+			color: white;
+			text-decoration: none;
+			/*transition: transform 0.5s ease-in-out;*/
+		}
+		
+		#mainHeader
+		{
+			position: fixed;
+			z-index: 11;
+			left: 0px;
+			width: 100%;
+			padding: 12px 5px 10px 50px;
+			background: #4C4C4C;
+			color: white;
+		}
+		#mainHeader h1
+		{
+			margin: 0px;
+			font-size: 16pt;
+			font-weight: normal;
+		}
+		#mainHeader a
+		{
+			position: absolute;
+			left: 20px;
+			top: 5px;
+			text-decoration: none;
+			color: white;
+			font-size: 32px;
+		}
+		
+.closeMenu {
+  display: none;
+}
+
+#mainNav:target, #mainNav:target a
+{
+  transform: translateX(0%);
+}
+#mainNav:target ~ #mainHeader .openMenu {
+  display: none;
+}
+#mainNav:target ~ #mainHeader .closeMenu {
+  display: block;
+}
+	</style>
+	<nav id="mainNav">
+		<a href="#history">History</a>
+		<a href="#imageReplacements">Image Replacements</a>
+		<a href="#colors">Colors</a>
+		<a href="#transform2d">2D Transforms</a>
+		<a href="#transform3d">3D Transforms</a>
+		<a href="#measures">Measures</a>
+		<a href="#animation">Animation</a>
+		<a href="#transitions">Transitions</a>
+		<a href="#examples">Examples</a>
+	</nav>
+	<header id="mainHeader">
+		<a href="#mainNav" class="openMenu">+</a>
+		<a href="#" class="closeMenu">--</a>
+		<h1>Slides</h1>
+	</header>
+
+	<section class="main">
+		<style type="text/css">
+			.slide.title h2, .slide.title h4
+			{
+				text-align: center;
+			}
+			@keyframes makeYourSiteMove
+			{
+				5%
+				{
+					transform: translate(200px, 10px);
+				}
+				10%
+				{
+					transform: translate(-200px, 25px);
+				}
+				15%
+				{
+					transform: translate(100px, 5px);
+				}
+				20%
+				{
+					transform: translate(-150px, -5px);
+				}
+				25%
+				{
+					transform: translate(250px, 20px);
+				}
+				30%
+				{
+					transform: translate(-100px, -10px);
+				}
+				35%
+				{
+					transform: translate(150px, -10px);
+				}
+				40%
+				{
+					transform: translate(-200px, 15px);
+				}
+				45%
+				{
+					transform: translate(300px, 25px);
+				}
+				50%
+				{
+					transform: translate(-150px, 10px);
+				}
+				55%
+				{
+					transform: translate(250px, -5px);
+				}
+				60%
+				{
+					transform: translate(-300px, -5px);
+				}
+				65%
+				{
+					transform: translate(100px, 20px);
+				}
+				70%
+				{
+					transform: translate(-200px, -5px);
+				}
+				75%
+				{
+					transform: translate(300px, 5px);
+				}
+				80%
+				{
+					transform: translate(-100px, -5px);
+				}
+				85%
+				{
+					transform: translate(200px, 5px);
+				}
+				90%
+				{
+					transform: translate(-150px, -15px);
+				}
+				95%
+				{
+					transform: translate(100px, 10px);
+				}
+			}
+			.slide.title
+			{
+				-webkit-animation-name:  makeYourSiteMove;
+				animation-name:  makeYourSiteMove;
+				-webkit-animation-duration: 2s;
+				animation-duration: 2s;
+				-webkit-animation-delay: 2s;
+				animation-delay: 2s;
+				/*animation-iteration-count: infinite;*/
+				/*animation-iteration-count: 3;*/
+				-webkit-transition-timing-function: ease-in-out;
+				transition-timing-function: ease-in-out;
+			}
+		</style>
+		<article id="slide1" class="slide short title">
+			<h2 class="light">Make Your Site Move With CSS</h2>
+			<h4 class="light">KCDC 2015</h4>
+			<h4 class="light">http://zealouscoder.com/presentations/KCDC15_Make_Your_Site_Move_With_CSS/</h4>
+		</article>
+		
+		<style type="text/css">
+		</style>
+		<article id="slide2" class="slide short">
+			<h2 class="dark">Hi!  I'm Al</h2>
+		</article>
+		
+		<style type="text/css">
+			.slide.history
+			{
+				color: #ffffff;
+			}
+			.slide.history a, .slide.history a:link, .slide.history a:active, .slide.history a:hover, .slide.history a:visited
+			{
+				color: #eeeeff;
+			}
+			.slide.history ul
+			{
+				width: 30%;
+			}
+			.slide.history ul ul
+			{
+				width: 100%;
+				font-size: 16pt;
+			}
+			.slide.history img
+			{
+				position: absolute;
+				top: 0%;
+				left: 50%;
+				border-radius: 5px;
+				background: rgba(240, 230, 220, 0.7);
+				box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+			}
+			.slide.history img.firstWebpage
+			{
+				transform: translateX(-40%) translateY(5%) translateZ(.50px) scale(0.35) rotate(-2deg);
+			}
+			.slide.history img.virtualLibrary
+			{
+				transform: translateX(-18%) translateY(10%) translateZ(.20px) scale(0.4) rotate(5deg);
+			}
+		</style>
+		<a name="history" class="bookmark"></a>
+		<article id="slide10" class="slide short history">
+			<h2 class="light">History</h2>
+			<ul>
+				<li>The early days were about making information available, not about style</li>
+				<ul>
+				<li><a href="http://info.cern.ch/hypertext/WWW/TheProject.html">The first webpage</a></li>
+				<li><a href="http://www.w3.org/MarkUp/draft-ietf-iiir-html-01.txt">HTML 1 spec</a></li>
+				<li><a href="http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html">HTML Tag List</a></li>
+				<li><a href="http://broadcast.rackspace.com/blog/HTMLtimeline/index.html">History Infographic</a></li>
+				<li><a href="http://vlib.org/">The WWW Virtual Library</a></li>
+				</ul>
+				<li>font and style added in HTML 3.2</li>
+				<li>Browser wars</li>
+				<li>Technologies come and go</li>
+			</ul>
+			<img src="firstWebpage.png" class="firstWebpage" alt="First webpage" />
+			<img src="wwwVirtualLibrary.png" class="virtualLibrary" alt="The WWW Virtual Library" />
+		</article>
+		
+		<style type="text/css">
+			.slide.imageReplace div > *
+			{
+				vertical-align: middle;
+				line-height: normal;
+			}
+			
+			.roundedCorners div
+			{
+				display: inline-block;
+				width: 150px;
+				height: 100px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px 25px;
+				border: 5px solid #1122dd;
+				text-align: center;
+			}
+			.roundedCorners1
+			{
+				border-radius: 20px;
+			}
+			.roundedCorners2
+			{
+				border-radius: 50px;
+				background: #1122dd;
+				color: #ffffff;
+			}
+			.roundedCorners3
+			{
+				border-radius: 0px 20px 50px 20px;
+			}
+			.roundedCorners4
+			{
+				border-radius: 100px/30px;
+				background: #1122dd;
+				color: #ffffff;
+			}
+			
+			.gradient div
+			{
+				display: inline-block;
+				width: 160px;
+				height: 110px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px 25px;
+				text-align: center;
+				color: #ffffff;
+			}
+			.gradient1
+			{
+				background: -webkit-linear-gradient(#ff0000, #0000ff); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(#ff0000, #0000ff); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(#ff0000, #0000ff); /* For Firefox 3.6 to 15 */
+				background: linear-gradient(#ff0000, #0000ff); /* Standard syntax */
+			}
+			.gradient2
+			{
+				background: -webkit-linear-gradient(left top, #ff0000, #0000ff); /* For Safari 5.1 to 6.0 */
+				background: -o-linear-gradient(bottom right, #ff0000, #0000ff); /* For Opera 11.1 to 12.0 */
+				background: -moz-linear-gradient(bottom right, #ff0000, #0000ff); /* For Firefox 3.6 to 15 */
+				background: linear-gradient(to bottom right, #ff0000, #0000ff); /* Standard syntax */
+			}
+			.gradient3
+			{
+				background: -webkit-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Safari 5.1 to 6.0 */
+				background: -o-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Opera 11.1 to 12.0 */
+				background: -moz-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Firefox 3.6 to 15 */
+				background: radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* Standard syntax */
+			}
+			
+			.boxShadow div
+			{
+				display: inline-block;
+				width: 160px;
+				height: 110px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px 25px;
+				background: #00ff00;
+				text-align: center;
+			}
+			.boxShadow1
+			{
+				box-shadow: 7px 7px #0000ff;
+			}
+			.boxShadow2
+			{
+				box-shadow: 7px 7px 5px 7px #0000ff;
+			}
+			.boxShadow3
+			{
+				box-shadow: 7px 7px 0px 10px #0000ff;
+			}
+			.boxShadow4
+			{
+				box-shadow: 10px 10px 5px 5px #0000ff inset;
+			}
+			
+			.textShadow div
+			{
+				clear: both;
+				display: inline-block;
+				width: 190px;
+				height: 110px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px;
+			}
+			.textShadow1
+			{
+				text-shadow: 2px 2px;
+			}
+			.textShadow2
+			{
+				text-shadow: 1px 1px 10px #0000ff;
+			}
+			.textShadow3
+			{
+				color: #ffffff;
+				text-shadow: 2px 2px 2px #000000, 4px 4px 4px #888888, 8px 8px 10px #ff0000, 0px 0px 30px #00ff00;
+			}
+		</style>
+		<a name="imageReplacements"></a>
+		<article id="slide20" class="slide imageReplace">
+			<h2 class="dark">Image Replacements</h2>
+			<div class="roundedCorners">
+				<div class="roundedCorners1">Rounded Corners</div>
+				<div class="roundedCorners2">Over-Rounded Corners</div>
+				<div class="roundedCorners3">Rounded Corners</div>
+				<div class="roundedCorners4">Elliptical Corners</div>
+			</div>
+			<div class="gradient">
+				<div class="gradient1">Strait</div>
+				<div class="gradient2">Diagonal</div>
+				<div class="gradient3">Angle and Transparency</div>
+			</div>
+			<div class="boxShadow">
+				<div class="boxShadow1">Basic</div>
+				<div class="boxShadow2">With a little blur</div>
+				<div class="boxShadow3">Oversized</div>
+				<div class="boxShadow4">Inset</div>
+			</div>
+			<div class="textShadow">
+				<div class="textShadow1">Simple Drop Shadow</div>
+				<div class="textShadow2">With Some Style</div>
+				<div class="textShadow3">But Not Too Much Style</div>
+			</div>
+		</article>
+		
+		<style type="text/css">
+			.slide.colors > *
+			{
+				vertical-align: top;
+				line-height: normal;
+			}
+			
+			.rgba, .hsl, .hsla
+			{
+				display: inline-block;
+				margin: 0px 15px 0px 0px;
+			}
+			.rgba div, .hsl div, .hsla div
+			{
+				padding: 5px 8px;
+			}
+			.rgba div:last-child, .hsl div:last-child, .hsla div:last-child
+			{
+				margin-bottom: 20px;
+			}
+			
+			.rgba
+			{
+				color: rgba(255, 255, 255, 1.0);
+			}
+			.rgba1
+			{
+				background: rgba(0, 0, 255, 1.0);
+			}
+			.rgba2
+			{
+				background: rgba(0, 0, 255, 0.8);
+			}
+			.rgba3
+			{
+				background: rgba(0, 0, 255, 0.6);
+			}
+			.rgba4
+			{
+				background: rgba(0, 0, 255, 0.4);
+			}
+			.rgba5
+			{
+				background: rgba(0, 0, 255, 0.2);
+			}
+			
+			.hsl
+			{
+				color: hsl(0, 100%, 100%);
+			}
+			.hsl1
+			{
+				background: hsl(240, 100%, 50%);
+			}
+			.hsl2
+			{
+				background: hsl(240, 80%, 50%);
+			}
+			.hsl3
+			{
+				background: hsl(240, 60%, 50%);
+			}
+			.hsl4
+			{
+				background: hsl(240, 40%, 50%);
+			}
+			.hsl5
+			{
+				background: hsl(240, 20%, 50%);
+			}
+			.hsl6
+			{
+				background: hsl(240, 0%, 50%);
+			}
+			
+			.hsla
+			{
+				color: hsla(0, 100%, 100%, 1.0);
+			}
+			.hsla1
+			{
+				background: hsla(240, 100%, 50%, 1.0);
+			}
+			.hsla2
+			{
+				background: hsla(240, 100%, 50%, 0.8);
+			}
+			.hsla3
+			{
+				background: hsla(240, 100%, 50%, 0.6);
+			}
+			.hsla4
+			{
+				background: hsla(240, 100%, 50%, 0.4);
+			}
+			.hsla5
+			{
+				background: hsla(240, 100%, 50%, 0.2);
+			}
+			
+/*			.slide.colors div
+			{
+				position: absolute;
+				top: 0%;
+				left: 50%;
+				border-radius: 5px;
+				background: rgba(240, 230, 220, 0.7);
+				box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
+			}*/
+			.slide.colors div.rgba
+			{
+				transform: translateX(385px) translateY(102px) translateZ(.60px) scale(.4)
+			}
+			.slide.colors div.hsl
+			{
+				transform: translateX(195px) translateY(60px) translateZ(.50px) scale(.5);
+			}
+			.slide.colors div.hsla
+			{
+				transform: translateX(49px) translateY(117px) translateZ(.70px) scale(.3);
+			}
+		</style>
+		<a name="colors"></a>
+		<article id="slide21" class="slide colors">
+			<h2 class="light">Color</h2>
+			<div class="rgba">
+				<div class="rgba1">rgba(0, 0, 255, 1.0)</div>
+				<div class="rgba2">rgba(0, 0, 255, 0.8)</div>
+				<div class="rgba3">rgba(0, 0, 255, 0.6)</div>
+				<div class="rgba4">rgba(0, 0, 255, 0.4)</div>
+				<div class="rgba5">rgba(0, 0, 255, 0.2)</div>
+			</div>
+			<div class="hsl">
+				<div class="hsl1">hsl(240, 100%, 50%)</div>
+				<div class="hsl2">hsl(240, 80%, 50%)</div>
+				<div class="hsl3">hsl(240, 60%, 50%)</div>
+				<div class="hsl4">hsl(240, 40%, 50%)</div>
+				<div class="hsl5">hsl(240, 20%, 50%)</div>
+				<div class="hsl6">
+					0 or 360 == red<br />
+					120 == green<br />
+					240 == blue<br />
+				</div>
+			</div>
+			<div class="hsla">
+				<div class="hsla1">hsla(240, 100%, 50%, 1.0)</div>
+				<div class="hsla2">hsla(240, 100%, 50%, 0.8)</div>
+				<div class="hsla3">hsla(240, 100%, 50%, 0.6)</div>
+				<div class="hsla4">hsla(240, 100%, 50%, 0.4)</div>
+				<div class="hsla5">hsla(240, 100%, 50%, 0.2)</div>
+			</div>
+		</article>
+		
+		<article id="slide22" class="slide field">
+		</article>
+		
+		<style type="text/css">
+			.slide.transform2d div.wrapper
+			{
+				position: relative;
+				display: inline-block;
+				width: 200px;
+				height: 200px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px 25px;
+			}
+			.slide.transform2d div.example
+			{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 150px;
+				height: 100px;
+				padding: 5px;
+			}
+			.slide.transform2d div.original
+			{
+				background-color: rgba(0, 200, 0, 0.4);
+			}
+			.slide.transform2d div.transform
+			{
+				background-color: rgba(0, 200, 0, 1.0);
+			}
+			.translate .transform
+			{
+				-ms-transform: translate(30px, 50px);
+				-webkit-transform: translate(30px, 50px);
+				transform: translate(30px, 50px);
+			}
+			.rotate .transform
+			{
+				-ms-transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+			.scale .transform
+			{
+				-ms-transform: scale(0.5, 2);
+				-webkit-transform: scale(0.5, 2);
+				transform: scale(0.5, 2);
+			}
+			.skew .transform
+			{
+				-ms-transform: skew(10deg, 25deg);
+				-webkit-transform: skew(10deg, 25deg);
+				transform: skew(10deg, 25deg);
+			}
+			
+			input.show
+			{
+				display: none;
+			}
+			.transform2d .codeExample
+			{
+				position: absolute;
+				top: 20vh;
+				left: 50vw;
+				width: 30vw;
+				height: 50vh;
+				padding: 10px 20px;
+				background: #ffffff;
+				box-shadow: 1px 1px 10px #000000;
+				transition: all 0.5s ease-in-out;
+			}
+			.transform2d #translateShow ~ .codeExample.translate,
+			.transform2d #rotateShow ~ .codeExample.rotate,
+			.transform2d #scaleShow ~ .codeExample.scale,
+			.transform2d #skewShow ~ .codeExample.skew
+			{
+				transform: scale(0);
+			}
+			.transform2d #translateShow:checked ~ .codeExample.translate,
+			.transform2d #rotateShow:checked ~ .codeExample.rotate,
+			.transform2d #scaleShow:checked ~ .codeExample.scale,
+			.transform2d #skewShow:checked ~ .codeExample.skew
+			{
+				transform: scale(1.0);
+			}
+			.transform2d #translateShow:checked ~ div.wrapper.translate > div.example.transform > label#translateShowLabel,
+			.transform2d #rotateShow:checked ~ div.wrapper.rotate > div.example.transform > label#rotateShowLabel,
+			.transform2d #scaleShow:checked ~ div.wrapper.scale > div.example.transform > label#scaleShowLabel,
+			.transform2d #skewShow:checked ~ div.wrapper.skew > div.example.transform > label#skewShowLabel
+			{
+				padding: 3px 5px;
+				background: #0000ff;
+				border: 1px solid #ff0000;
+				border-radius: 10px;
+				color: #ffffff;
+			}
+		</style>
+		<a name="transform2d"></a>
+		<article id="slide23" class="slide transform2d">
+			<h2 class="light">2D Transforms</h2>
+			<input id="translateShow" class="show" type="checkbox" />
+			<div class="wrapper translate">
+				<div class="example original">Original</div>
+				<div class="example transform">
+					<label for="translateShow" id="translateShowLabel">Translate</label>
+				</div><br />
+			</div>
+			<input id="rotateShow" class="show" type="checkbox" />
+			<div class="wrapper rotate">
+				<div class="example original">Original</div>
+				<div class="example transform">
+					<label for="rotateShow" id="rotateShowLabel">Rotate</label>
+				</div><br />
+			</div><br />
+			<input id="scaleShow" class="show" type="checkbox" />
+			<div class="wrapper scale">
+				<div class="example original">Original</div>
+				<div class="example transform">
+					<label for="scaleShow" id="scaleShowLabel">Scale</label>
+				</div><br />
+			</div>
+			<input id="skewShow" class="show" type="checkbox" />
+			<div class="wrapper skew">
+				<div class="example original">Original</div>
+				<div class="example transform">
+					<label for="skewShow" id="skewShowLabel">Skew</label>
+				</div><br />
+			</div>
+			<div class="codeExample base">
+				Click on the transform to see the CSS
+			</div>
+			<div class="codeExample translate">
+				transform: translate(30px, 50px);
+			</div>
+			<div class="codeExample rotate">
+				transform: rotate(45deg);
+			</div>
+			<div class="codeExample scale">
+				transform: scale(0.5, 2);
+			</div>
+			<div class="codeExample skew">
+				transform: skew(10deg, 25deg);
+			</div>
+		</article>
+		
+		<style type="text/css">
+			.slide.transform3d div.wrapper
+			{
+				position: relative;
+				position: relative;
+				display: inline-block;
+				width: 400px;
+				height: 400px;
+				margin: 5px 20px 25px 5px;
+				padding: 10px 25px;
+			}
+			.slide.transform3d div.original
+			{
+				position: relative;
+				width: 250px;
+				height: 250px;
+				margin: 30px;
+				padding: 10px;
+				background-color: rgba(255, 200, 0, 0.4);
+				border: 1px solid #00ff00;
+				-webkit-perspective: 150px;
+				perspective: 150px;
+				-webkit-perspective-origin: 20% 20%;
+				perspective-origin: 20% 20%;
+			}
+			.slide.transform3d div.perspective
+			{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				padding: 50px;
+				border: 1px solid #00ff00;
+				background-color: rgba(255, 200, 0, 1.0);
+				-webkit-transform: rotateX(45deg);
+				transform: rotateX(45deg);
+			}
+			
+			.transform3d .codeExample
+			{
+				position: absolute;
+				top: 20vh;
+				left: 50vw;
+				width: 35vw;
+				height: 50vh;
+				padding: 10px 20px;
+				background: #ffffff;
+				box-shadow: 1px 1px 10px #000000;
+				transition: all 0.5s ease-in-out;
+			}
+			.transform3d #multiple3dShow ~ .codeExample.multiple3d
+			{
+				transform: scale(0);
+			}
+			.transform3d #multiple3dShow:checked ~ .codeExample.multiple3d
+			{
+				transform: scale(1.0);
+			}
+			#multiple3dShow:checked ~ div.wrapper.multiple3d > div.original > div.perspective > label#multiple3dShowLabel
+			{
+				padding: 3px 5px;
+				background: #0000ff;
+				border: 1px solid #ff0000;
+				border-radius: 10px;
+				color: #ffffff;
+			}
+		</style>
+		<a name="transform3d"></a>
+		<article id="slide24" class="slide transform3d">
+			<h2 class="light">3D Transforms</h2>
+			<input id="multiple3dShow" class="show" type="checkbox" />
+			<div class="wrapper multiple3d">
+				<div class="original">
+					Original
+					<div class="perspective">
+						<label for="multiple3dShow" id="multiple3dShowLabel">Multiple 3D</label>
+					</div>
+				</div>
+			</div>
+			<div class="codeExample base">
+				Click on the transform to see the CSS
+			</div>
+			<div class="codeExample multiple3d">
+				<pre>
+div.original
+{
+    position: relative;
+    perspective: 150px;
+    perspective-origin: 20% 20%;
+}
+div.perspective
+{
+    position: absolute;
+    transform: rotateX(45deg);
+}
+				</pre>
+			</div>
+		</article>
+		
+		<style type="text/css">
+			.slide.measures
+			{
+				color: #000000;
+			}
+			.slide.measures a, .slide.measures a:link, .slide.measures a:active, .slide.measures a:hover, .slide.measures a:visited
+			{
+				color: #000011;
+			}
+		</style>
+		<a name="measures"></a>
+		<article id="slide25" class="slide measures">
+			<h2 class="dark">Units of Measure</h2>
+			<ul>
+				<li><a href="http://www.w3schools.com/cssref/css_units.asp">http://www.w3schools.com/cssref/css_units.asp</a></li>
+				<li>%, px, cm, mm, in, pt, pc</li>
+				<li>em -- relative to the font-size of the element (2em means 2 times the size of the current font)</li>
+				<li>ex -- relative to the x-height of the current font</li>
+				<li>ch -- relative to width of the "0" (zero)</li>
+				<li>rem -- relative to font-size of the root element</li>
+				<li>vh, vw -- represents 1% of the height/width of the viewport</li>
+				<li>vmin, vmax -- represents to 1% of viewport's smaller/larger dimension</li>
+			</ul>
+		</article>
+		
+		<style type="text/css">
+			@keyframes changeBackgroundAndText
+			{
+				0%
+				{
+					top: 0px;
+					left: 0px;
+					background-color: #ffffff;
+				}
+				25%
+				{
+					top: 0px;
+					left: 0px;
+					background-color: #ff0000;
+				}
+				40%
+				{
+					top: 0px;
+					left: 400px;
+					background-color: #ffa500;
+				}
+				55%
+				{
+					top: 400px;
+					left: 400px;
+					background-color: #ffa500;
+				}
+				70%
+				{
+					top: 400px;
+					left: 0px;
+					background-color: #ffff00;
+				}
+				85%
+				{
+					top: 0px;
+					left: 0px;
+					background-color: #00ff00;
+				}
+				100%
+				{
+					top: 0px;
+					left: 400px;
+					background-color: #0000ff;
+				}
+			}
+
+			.slide.animation div#changingBox
+			{
+				position: relative;
+				width: 300px;
+				height: 200px;
+				margin: 5px 0px 0px 0px;
+				padding: 15px 25px;
+				background-color: #ff0000;
+				color: #ffffff;
+			}
+			.slide.animation #changingBoxShow:checked ~ div#changingBox
+			{
+				-webkit-animation-name: changeBackgroundAndText;
+				animation-name: changeBackgroundAndText;
+				-webkit-animation-duration: 8s;
+				animation-duration: 8s;
+				-webkit-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+			}
+			#changingBoxShow:checked ~ div#changingBox > label#changingBoxShowLabel
+			{
+				padding: 3px 5px;
+				background: #ffffff;
+				border: 1px solid #000000;
+				border-radius: 10px;
+				color: #000000;
+			}
+			
+			.animation .codeExample
+			{
+				position: absolute;
+				top: 6vh;
+				left: 50vw;
+				width: 45vw;
+				height: 87vh;
+				padding: 10px 20px;
+				background: #ffffff;
+				box-shadow: 1px 1px 10px #000000;
+				transition: all 0.5s ease-in-out;
+			}
+		</style>
+		<a name="animation"></a>
+		<article id="slide26" class="slide animation">
+			<h2 class="light">Animation</h2>
+			<input id="changingBoxShow" class="show" type="checkbox" />
+			<div id="changingBox">
+				<label for="changingBoxShow" id="changingBoxShowLabel">Changing Box</label>
+			</div>
+			<div class="codeExample">
+				<pre>
+@keyframes changeBackgroundAndText
+{
+    0%  25%  40%  55%  70%
+    85%
+    {
+      top: 0px;  left: 0px;  background-color: #00ff00;
+    }
+    100%
+    {
+      top: 0px;  left: 400px;  background-color: #0000ff;
+    }
+}
+
+.animation div { /* default size, shape, location*/ }
+
+.animation #changingBoxShow:checked ~ div#changingBox
+{
+    animation-name: changeBackgroundAndText;
+    animation-duration: 8s;
+    animation-fill-mode: forwards;
+}
+
+#changingBoxShow:checked 
+	~ div#changingBox > label#changingBoxShowLabel 
+{ /* format text */ }
+
+				</pre>
+			</div>
+		</article>
+		
+		<style type="text/css">
+			.slide.transitions div.immediate, .slide.transitions div.transition
+			{
+				display: inline-block;
+				position: relative;
+				padding: 5px;
+				background-color: #ff0000;
+				margin: 5px 20px 25px 5px;
+				padding: 20px;
+				border-style: solid;
+				border-width: 5px;
+				border-color: #00ff00;
+				border-radius: 20px;
+				text-align: center;
+				color: #ffffff;
+			}
+			.slide.transitions div.transition
+			{
+				-webkit-transition: background-color 0.4s, border-color 0.4s, border-style 0.4s, box-shadow 0.4s;
+				transition: background-color 0.4s, border-color 0.4s, border-style 0.4s, box-shadow 0.4s;
+			}
+			.slide.transitions div.immediate:hover,
+			.slide.transitions div.transition:hover
+			{
+				border-style: dashed;
+				border-color: #ffff00;
+				background-color: #0000ff;
+				box-shadow: 0px 0px 20px #333333;
+			}
+			
+			.transitions .codeExample
+			{
+				position: absolute;
+				top: 20vh;
+				left: 45vw;
+				width: 45vw;
+				height: 55vh;
+				padding: 10px 20px;
+				background: #ffffff;
+				box-shadow: 1px 1px 10px #000000;
+				transition: all 0.5s ease-in-out;
+			}
+		</style>
+		<a name="transitions"></a>
+		<article id="slide27" class="slide transitions">
+			<h2 class="dark">Transitions</h2>
+			<div class="immediate">immediate<br />hover</div>
+			<div class="transition">with<br /> transition</div>
+			<div class="codeExample">
+				<pre>
+.slide.transitions div.transition
+{
+    transition: background-color 0.5s, border-color 0.5s, 
+                border-style 0.5s, box-shadow 0.5s;
+}
+
+.slide.transitions div.immediate:hover,
+.slide.transitions div.transition:hover
+{
+    border-style: dashed;
+    border-color: #ffff00;
+    background-color: #0000ff;
+    box-shadow: 0px 0px 20px #333333;
+}
+				</pre>
+			</div>
+		</article>
+		
+		<style type="text/css">
+			.examples .wrapper
+			{
+				width: 40vw;
+				padding: 20px;
+				background: #ffffff;
+			}
+			.examples a
+			{
+				color: #222222;
+			}
+			.logo
+			{
+				width: 100px;
+			}
+			.logo:hover
+			{
+				animation-name: logoAnimate;
+				animation-duration: 3s;
+				animation-iteration-count: 1;
+				animation-timing-function: ease-in-out;
+			}
+			@keyframes logoAnimate
+			{
+				0%
+				{
+					transform: scale(1) rotate(0turn);
+				}
+				10%
+				{
+					transform: scale(1.2) rotate(0turn);
+				}
+				90%
+				{
+					transform: scale(1.2) rotate(2.0turn);
+				}
+				100%
+				{
+					transform: scale(1) rotate(0turn);
+				}
+			}
+		</style>
+		<a name="examples"></a>
+		<article id="slide30" class="slide examples">
+			<h2 class="light">Examples</h2>
+			<div class="wrapper">
+			<img class="logo" src="html5_css3_styling.svg" /><br />
+			<br />
+			<a href="http://codepen.io/carpenumidium/pen/Detnk">http://codepen.io/carpenumidium/pen/Detnk</a><br />
+			<a href="http://designscrazed.org/css3-animation-examples/">http://designscrazed.org/css3-animation-examples/</a><br />
+			<br />
+			<a href="https://css-tricks.com/css-animation-tricks/">https://css-tricks.com/css-animation-tricks/</a><br />
+			<a href="http://codepen.io/Zeaklous/pen/pcfCJ">http://codepen.io/Zeaklous/pen/pcfCJ</a><br />
+			<a href="http://codepen.io/Zeaklous/pen/lmbJy">http://codepen.io/Zeaklous/pen/lmbJy</a><br />
+			<br />
+			<a href="http://bennettfeely.com/csscreatures/">http://bennettfeely.com/csscreatures/</a><br />
+			<a href="http://codepen.io/juliangarnier/full/idhuG">http://codepen.io/juliangarnier/full/idhuG</a><br />
+
+		</article>
+		<style type="text/css">
+			.examples2 a
+			{
+				color: #dddddd;
+			}
+		</style>
+		<article id="slide31" class="slide examples2">
+			<h2 class="light">Show/Hide Content Example</h2>
+			<a href="http://codepen.io/trevanhetzel/pen/fgvsA">http://codepen.io/trevanhetzel/pen/fgvsA</a><br />
+			<a href="http://modernweb.com/2014/07/30/5-things-wont-believe-built-css/">http://modernweb.com/2014/07/30/5-things-wont-believe-built-css/</a><br />
+		</article>
+		
+		<style type="text/css">
+			.examples3 a
+			{
+				color: #dddddd;
+			}
+		</style>
+		<article id="slide32" class="slide examples3">
+			<h2 class="light">Parallax Scrolling Example</h2>
+			<a href="http://codepen.io/keithclark/pen/JycFw">http://codepen.io/keithclark/pen/JycFw</a><br />
+			<a href="http://keithclark.co.uk/articles/pure-css-parallax-websites/">http://keithclark.co.uk/articles/pure-css-parallax-websites/</a><br />
+			<a href="https://css-tricks.com/pure-css-parallax-scrolling-websites/">https://css-tricks.com/pure-css-parallax-scrolling-websites/</a><br />
+		</article>
+		<style type="text/css">
+			.examples4 a
+			{
+				color: #222222;
+			}
+		</style>
+		<article id="slide33" class="slide examples4">
+			<h2 class="dark">Off Canvas Navigation Example</h2>
+			<a href="http://trevan.co/off-canvas-navigation-with-css-a-checkbox/">http://trevan.co/off-canvas-navigation-with-css-a-checkbox/</a><br />
+			<br />
+			<a href="http://codepen.io/shshaw/pen/fGiwh">http://codepen.io/shshaw/pen/fGiwh</a><br />
+			<a href="http://css-tricks.com/off-canvas-menu-with-css-target/">http://css-tricks.com/off-canvas-menu-with-css-target/</a><br />
+			<a href="http://codepen.io/chriscoyier/pen/umEgv">http://codepen.io/chriscoyier/pen/umEgv</a><br />
+		</article>
+		<style type="text/css">
+			.examples5 a
+			{
+				color: #dddddd;
+			}
+		</style>
+		<article id="slide34" class="slide examples5">
+			<h2 class="light">Tabs Example</h2>
+			<a href="http://trevan.co/a-pure-css-approach-to-tabs/">http://trevan.co/a-pure-css-approach-to-tabs/</a><br />
+		</article>
+		<style type="text/css">
+			.references a
+			{
+				color: #dddddd;
+			}
+		</style>
+		<article id="slide50" class="slide references">
+			<h2 class="light">References</h2>
+			<ul>
+				<li><a href="http://caniuse.com/">Can I use ______________?</a></li>
+				<li><a href="https://css-tricks.com/">CSS-Tricks</a></li>
+				<li><a href="http://www.w3schools.com/">W3 Schools</a></li>
+				<li><a href="http://www.w3.org/Style/CSS/">W3C CSS Home</a></li>
+				<li><a href="http://beta.theexpressiveweb.com/">Adobe's expressive web</a></li>
+				<li><a href="http://www.smashingmagazine.com/2011/09/14/the-guide-to-css-animation-principles-and-examples/">The Guide To CSS Animation: Principles and Examples</a></li>
+			</ul>
+			<ul>
+				<li><a href="http://www.smashingmagazine.com/2011/09/14/the-guide-to-css-animation-principles-and-examples/">http://www.smashingmagazine.com/2011/09/14/the-guide-to-css-animation-principles-and-examples/</a></li>
+				<li><a href="http://webdesign.tutsplus.com/articles/15-inspiring-examples-of-css-animation-on-codepen--cms-23937">http://webdesign.tutsplus.com/articles/15-inspiring-examples-of-css-animation-on-codepen--cms-23937</a></li>
+				<li><a href="http://www.creativebloq.com/css3/animation-with-css3-712437">http://www.creativebloq.com/css3/animation-with-css3-712437</a></li>
+				<li><a href="http://designscrazed.org/css3-animation-examples/">http://designscrazed.org/css3-animation-examples/</a></li>
+			</ul>
+		</article>
+		<style type="text/css">
+			div.rollingSmiley
+			{
+				width: 1000px;
+			}
+			
+			@keyframes rollingSmiley
+			{
+				50%
+				{
+					-webkit-transform: translate(872px, 0px) rotate(2.0turn);
+					transform: translate(872px, 0px) rotate(2.0turn);
+				}
+				100%
+				{
+					-webkit-transform: translate(0px, 0px) rotate(0turn);
+					transform: translate(0px, 0px) rotate(0turn);
+				}
+			}
+			div.rollingSmileyWrapper img
+			{
+				-webkit-animation-name: rollingSmiley;
+				animation-name: rollingSmiley;
+				-webkit-animation-duration: 8s;
+				animation-duration: 8s;
+				animation-delay: 5s;
+				animation-iteration-count: infinite;
+				-webkit-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+			}
+			
+			div.flyingSmileyWrapper
+			{
+				width: 128px;
+				height: 128px;
+			}
+			
+			@keyframes flyingSmiley
+			{
+				0%
+				{
+					transform: translate(0px, 50px) scale(0.01);
+				}
+				1%
+				{
+					transform: translate(150px, 0px) scale(0.1);
+				}
+				2%
+				{
+					transform: translate(300px, 10px) scale(0.2);
+				}
+				3%
+				{
+					transform: translate(400px, 40px) scale(0.3);
+				}
+				4%
+				{
+					transform: translate(500px, 70px) scale(0.4);
+				}
+				5%
+				{
+					transform: translate(550px, 110px) scale(0.5);
+				}
+				6%
+				{
+					transform: translate(500px, 160px) scale(0.6);
+				}
+				7%
+				{
+					transform: translate(450px, 200px) scale(0.7);
+				}
+				10%
+				{
+					transform: translate(450px, 250px) scale(1.0) rotate(0turn);
+				}
+				20%
+				{
+					transform: translate(450px, 250px) scale(2.0) rotate(2.5turn);
+				}
+				100%
+				{
+					transform: translate(450px, 250px) scale(1.0) rotate(0turn);
+				}
+			}
+			div.flyingSmileyWrapper img
+			{
+				display: inline-block;
+				-webkit-animation-name: flyingSmiley;
+				animation-name: flyingSmiley;
+				-webkit-animation-duration: 8s;
+				animation-duration: 8s;
+				-webkit-animation-delay: 3s;
+				animation-delay: 3s;
+				animation-iteration-count: infinite;
+				-webkit-animation-fill-mode: forwards;
+				animation-fill-mode: forwards;
+				-webkit-transition-timing-function: ease-in-out;
+				transition-timing-function: ease-in-out;
+			}
+		</style>
+		<article id="slide51" class="slide">
+			<h2>Thanks!<h2>
+			<ul>
+				<li>Al Wilkinson</li>
+				<li>zealouscoder@gmail.com</li>
+				<li>@zealouscoder</li>
+			</ul>
+			<div class="rollingSmileyWrapper"><img src="smileyicon.png" /></div>
+			<div class="flyingSmileyWrapper"><img src="smileyicon.png" /></div>
+		</article>
+	</section>
+</body>
+</html>
