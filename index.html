@@ -35,8 +35,8 @@
     <div id="slide1" class="slide short">
       <div class="slide-background"></div>
       <div class="title">
-        <h2 class="light-text text-align-center">CSS on the Move</h2>
-        <h3 class="light-text text-align-center">Jeremy K. Moritz</h3>
+        <h1 class="light-text text-align-center">CSS on the Move</h1>
+        <h2 class="light-text text-align-center">Jeremy K. Moritz</h2>
       </div>
     </div>
 
@@ -45,7 +45,8 @@
       <div class="slide-content">
         <div class="slide-text dark-text mt-5">
           <h2>Assumptions</h2>
-          <p>For the sake of the course, I'm assuming some familiarity with these concepts:</p>
+          <!-- <p>For the sake of the presentation, I'm assuming some familiarity with these concepts:</p> -->
+          <p>Some familiarity with these concepts:</p>
           <ul>
             <li>Basic HTML</li>
             <li>Basic-to-Intermediate CSS</li>
@@ -72,6 +73,21 @@
               <li><a href="http://vlib.org/">The WWW Virtual Library</a></li>
             </ul>
             <li>Font and style added in HTML 3.2 (1997)</li>
+            <li>Pseudo-classes... <pre>:hover, :before, :after, :first-child</pre></li>
+            <li>CSS Animations introduced in 2009 (limited browser support)</li>
+            <li>Browser Prefixes...
+              <div class="white-bg p-3">
+                <pre>
+-webkit-linear-gradient(#e64, #92d);
+-moz-linear-gradient(#e64, #92d);
+-ms-linear-gradient(#e64, #92d);
+-o-linear-gradient(#e64, #92d);
+linear-gradient(#e64, #92d);
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e64', endColorstr='#92d');
+                </pre>
+              </div>
+            </li>
           </ul>
         </div>
         <div class="slide-image">
@@ -117,12 +133,12 @@
               </aside>
             </div>
           </div>
-          <!-- <div class="boxShadow">
+          <div class="boxShadow">
             <div class="boxShadow1">Basic</div>
             <div class="boxShadow2">With a little blur</div>
             <div class="boxShadow3">Oversized</div>
             <div class="boxShadow4">Inset</div>
-          </div> -->
+          </div>
           <div class="textShadow">
             <div class="textShadow1">Simple Drop Shadow</div>
             <div class="textShadow2">With Some Style</div>
@@ -219,7 +235,7 @@
             <div class="original">
               Original
               <div class="perspective">
-                <label for="multiple3dShow" id="multiple3dShowLabel">3D Change</label>
+                <label for="multiple3dShow" id="multiple3dShowLabel">Multi-3D</label>
               </div>
             </div>
           </div>
@@ -318,13 +334,11 @@
       <div class="slide-content">
         <div class="slide-text">
           <h2 class="light-text">Animation</h2>
-          <div class="block circle"></div>
-          <div class="block heart"></div>
 
           <div class="accordion-wrapper">
             <div class="card" id="accordion-card">
               <div class="card-header">
-                Watch the arrow on the right side
+                Watch the triangle on the right side
                 <div class="twirl-arrow"></div>
               </div>
               <div class="card-body">
@@ -334,7 +348,27 @@
               </div>
             </div>
           </div>
+
+          <div class="block circle"></div>
+          <div class="block heart"></div>
+
+          <p><a href="example-styles.css">Example CSS Here</a></p>
           <!-- <a href="https://webdesign.tutsplus.com/tutorials/a-beginners-introduction-to-css-animation--cms-21068?utm_source=CSS-Weekly&utm_campaign=Issue-114&utm_medium=email" class="light-text text-decoration-underline">based on this tutorial</a><br> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="slide11b" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text mt-5">Animation with Keyframes</h2>
+          <div class="movable-thing-wrapper">
+            <img src="cloud.png" id="this-movable-thing" alt="cloud">
+          </div>
+          <div class="dark-bg light-text">
+            <img src="keyframes-example.png" alt class="keyframes-example">
+          </div>
         </div>
       </div>
     </div>
@@ -402,7 +436,7 @@
             </div>
           </div> -->
           <br><br><br>
-          <a href="https://www.w3schools.com/howto/howto_css_loader.asp" class="dark-text">based on</a><br>
+          <a href="https://www.w3schools.com/howto/howto_css_loader.asp" class="dark-text">Click for Tutorial</a><br>
         </div>
       </div>
     </div>
@@ -469,6 +503,7 @@
             <li><a href="http://keithclark.co.uk/articles/practical-css-parallax/smooth-scroll/#slide-3">the example</a></li>
             <li><a href="https://codepen.io/keithclark/pen/JycFw">the previous version</a></li>
           </ul>
+          <h3 class="dark-text mt-5">Any questions?</h2>
         </div>
       </div>
     </div>
@@ -482,6 +517,7 @@
             <li>Jeremy Moritz</li>
             <li>jmoritz@naic.org</li>
           </ul>
+          <p>Full Project available on GitHub: <a href="https://github.com/jeremymoritz/css-on-the-move">https://github.com/jeremymoritz/css-on-the-move</a></p>
           <div class="rollingSmileyWrapper"><img src="smileyicon.png" /></div>
           <div class="flyingSmileyWrapper"><img src="smileyicon.png" /></div>
         </div>

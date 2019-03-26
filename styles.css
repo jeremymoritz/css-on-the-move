@@ -1,24 +1,19 @@
-html {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
   height: 100%;
   overflow: hidden;
 }
-
 body {
-  height: 100%;
-  overflow: hidden;
-  -webkit-transform: none;
   transform: translateZ(0px); /* Fix paint and scroll issues in Edge && Safari H/W acceleration, can also cause webkit issues with fixed elements */
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   font-family: arial;
   font-size: 20pt;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 h2, h4 {
@@ -37,6 +32,9 @@ img {
 .light-text {
   color: #ffffff;
   text-shadow: 1px 1px 10px #000000;
+}
+.white-bg {
+  background: #fff;
 }
 
 .dark-text {
@@ -330,6 +328,16 @@ img {
     #111111 30px,
     #222222 30px,
     #222222 60px
+  );
+}
+
+#slide11b .slide-background {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #fdd,
+    #fdd 30px,
+    #ecc 30px,
+    #ecc 60px
   );
 }
 
@@ -864,32 +872,32 @@ input.show { /* hide checkboxes */
   0% {
     left: 125px;
     border-radius: 0 0 0 0;
-    background: #ee1111;
+    transform: rotate(0deg);
+  }
+  5% {
+    left: 125px;
+    border-radius: 0 0 0 0;
     transform: rotate(0deg);
   }
   30% {
     left: 125px;
     border-radius: 0px 125px 0px 0px;
-    background: #ee1111;
   }
   60% {
     left: 125px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(0deg);
     transform-origin: 0% 0%;
   }
   90% {
     left: 125px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(-45deg);
     transform-origin: 0% 100%;
   }
   100% {
     left: 125px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(-45deg);
     transform-origin: 0% 100%;
   }
@@ -899,50 +907,48 @@ input.show { /* hide checkboxes */
   0% {
     left: 0px;
     border-radius: 0 0 0 0;
-    background: #ee1111;
+    transform: rotate(0deg);
+  }
+  5% {
+    left: 0px;
+    border-radius: 0 0 0 0;
     transform: rotate(0deg);
   }
   30% {
     left: 0px;
     border-radius: 125px 0px 0px 0px;
-    background: #ee1111;
   }
   60% {
     left: 0px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(0deg);
     transform-origin: 0% 0%;
   }
   90% {
     left: 0px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(45deg);
     transform-origin: 100% 100%;
   }
   100% {
     left: 0px;
     border-radius: 125px 125px 0px 0px;
-    background: #ee1111;
     transform: rotate(45deg);
     transform-origin: 100% 100%;
   }
 }
 
-.heart::before,
+.heart:before,
 .heart:after {
   position: absolute;
   content: "";
-  left: 125px;
   top: 0px;
   width: 125px;
   height: 200px;
   background: #ee1111;
 }
-.heart::after {
-  left: 0px;
-}
+.heart:before {left: 125px;}
+.heart:after {left: 0px;}
 
 #slide10 .heart::before {
   animation-name: squareToHeartBefore;
@@ -960,11 +966,49 @@ input.show { /* hide checkboxes */
   animation-timing-function: linear;
   animation-direction: alternate;
 }
+
 #slide11 .block {
   position: relative;
   display: inline-block;
   margin: 50px;
   background: none;
+}
+
+
+
+#slide11b .slide-text div > * {
+  vertical-align: middle;
+  line-height: normal;
+}
+#slide11b .slide-text div {
+  box-sizing: unset;
+}
+#slide11b a, #slide11b a:link, #slide11b a:active, #slide11b a:hover, #slide11b a:visited {
+  color: #eeeeff;
+}
+#slide11b ul {
+  color: #ffffff;
+}
+
+.movable-thing-wrapper {float: right;}
+.movable-thing-wrapper img {width: 250px;}
+
+@keyframes makeThisThingMove {
+  5%  { transform: translate(200px, 10px); }
+  10% { transform: translate(-200px, 125px); }
+  15% { transform: translate(100px, 5px); }
+  30% { transform: translate(-100px, -10px); }
+  45% { transform: translate(300px, 125px); }
+  60% { transform: translate(-300px, -5px); }
+  80% { transform: translate(-100px, 200px); }
+  100% { transform: translate(0, 0); }
+}
+#this-movable-thing  {
+  animation-name:  makeThisThingMove;
+  animation-duration: 5s;
+  animation-delay: 2s;
+  transition-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes spin {
