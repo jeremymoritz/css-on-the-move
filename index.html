@@ -6,150 +6,13 @@
   <meta name="viewport" content="width=device-width">
   <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <style type="text/css">
-    html {
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      height: 100%;
-      overflow: hidden;
-      -webkit-transform: none;
-      transform: translateZ(0px); /* Fix paint and scroll issues in Edge && Safari H/W acceleration, can also cause webkit issues with fixed elements */
-      margin: 0px;
-      padding: 0px;
-      box-sizing: border-box;
-      font-family: arial;
-      font-size: 20pt;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    h2, h4 {
-      margin-bottom: 30px;
-    }
-
-    ul {
-      margin-bottom: 40px;
-      padding-left: 40px;
-    }
-
-    img {
-      border: 0px;
-    }
-
-    .light-text {
-      color: #ffffff;
-      text-shadow: 1px 1px 10px #000000;
-    }
-
-    .dark-text {
-      color: #000000;
-      text-shadow: 1px 1px 12px #ffffff;
-    }
-
-    .text-align-center {
-      text-align: center;
-    }
-
-    .weird-quirk {
-      position: fixed;
-      width: 0%;
-      bottom: 0;
-      z-index: 100;
-      color: transparent;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="weird-quirk">
     .<!-- weird edge quirk -->
   </div>
 
-  <style type="text/css">
-    #mainNav {
-      position: fixed;
-      z-index: 1000;
-      width: 250px;
-      height: calc(100vh - 47px);
-      overflow-y: auto;
-      background: #272727;
-      transition: transform 0.5s ease-in-out;
-      transform: translateX(-100%);
-    }
-    #mainNav a:first-child {
-      margin-top: 46px;
-    }
-    #mainNav a {
-      display: block;
-      transform: translateX(-3.5em);
-      padding: 10px 15px;
-      border-top: 1px solid #484848;
-      border-bottom: 1px solid #2E2E2E;
-      font-size: 16pt;
-      color: #ffffff;
-      text-decoration: none;
-      transition: transform 0.5s ease-in-out;
-    }
-
-    #mainHeader {
-      position: fixed;
-      z-index: 1001;
-      top: 0vh;
-      left: 0vw;
-      width: 100%;
-      height: 47px;
-      padding: 12px 5px 10px 50px;
-      background: #4C4C4C;
-      color: #ffffff;
-    }
-    #mainHeader a {
-      position: absolute;
-      top: 2px;
-      left: 20px;
-      text-decoration: none;
-      color: #ffffff;
-      font-size: 32px;
-    }
-    #mainHeader .flip {
-      position: relative;
-      display: inline-block;
-      width: 16px;
-      margin: 0px;
-      font-size: 16pt;
-      font-weight: normal;
-      text-align: center;
-    }
-    #mainHeader .text {
-      position: relative;
-      display: inline-block;
-      left: 10px;
-      margin: 0px;
-      font-size: 16pt;
-      font-weight: normal;
-    }
-
-    #mainNav:target, #mainNav:target a {
-      transform: translateX(0%);
-    }
-    #mainNav ~ #mainHeader .openMenu {
-      display: block;
-    }
-    #mainNav:target ~ #mainHeader .openMenu {
-      display: none;
-    }
-    #mainNav ~ #mainHeader .closeMenu {
-      display: none;
-    }
-    #mainNav:target ~ #mainHeader .closeMenu {
-      display: block;
-    }
-  </style>
   <nav id="mainNav">
     <a href="#slide1">Top</a>
     <a href="#slide3">History</a>
@@ -168,226 +31,8 @@
     <a href="#" class="closeMenu"><span class="flip">--</span><span class="text">Slides</span></a>
   </header>
 
-  <style type="text/css">
-    #slides-wrapper {
-      position: absolute;
-      width: 100vw;
-      height: calc(100vh - 47px);
-      margin-top: 47px;
-      overflow-x: hidden;
-      overflow-y: auto;
-
-      perspective: 300px;
-      scroll-behavior: smooth;
-    }
-
-    .slide {
-      position: relative;
-      width: 100vw;
-      height: calc(100vh - 47px);
-      padding: 10vh 5vw 5vh 10vw;
-    }
-    .slide.short {
-      padding: 20vh 5vw 20vh 10vw;
-    }
-    .slide-content {
-      display: -webkit-flex;
-      display: flex;
-      max-width: 1200px;
-      align-items: center;
-    }
-    .slide, .slide-content {
-      transform-style: preserve-3d;
-    }
-
-    .slide-text {
-      transform: translateX(5vw) translateZ(60px) scale(.8);
-      transform-origin: 0% 50%;
-    }
-    .slide-image {
-      display: block;
-      max-width: 560px;
-      margin: auto;
-    }
-    .slide-text, .slide-image {
-      -webkit-flex: 1;
-      flex: 1;
-    }
-
-    .slide-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-    }
-
-    /* .slide:nth-child(2n) .slide-text { */
-    #slide2 .slide-text {
-      -webkit-order: 1;
-      order: 1;
-    }
-
-    .slide:nth-child(2n) .slide-background {
-      transform: translateZ(60px) scale(.80);
-    }
-    .slide:nth-child(2n+1):not(:first-child) .slide-background {
-      top: -50%;
-    }
-    .slide:nth-child(2n+1):not(:last-child) .slide-background {
-      bottom: -50%;
-    }
-    .slide:nth-child(2n) {
-      z-index: 1; /* ensure slides overlay correctly */
-    }
-
-    #slide1 .slide-background {
-      background: #0047e5 url(beautiful_field.jpg);
-    }
-
-    #slide2 .slide-background {
-      background: #f7be0c;
-    }
-
-    #slide3 .slide-background {
-      background-image: repeating-linear-gradient(
-        60deg,
-        #666666,
-        #666666 30px,
-        #888888 30px,
-        #888888 60px
-      );
-    }
-
-    #slide4 .slide-background {
-      background-image: repeating-linear-gradient(
-        -45deg,
-        #85ade6,
-        #85ade6 30px,
-        #7199d2 30px,
-        #7199d2 60px
-      );
-    }
-
-    #slide4a .slide-background {
-      background-image: repeating-linear-gradient(
-        20deg,
-        #888888,
-        #888888 30px,
-        #a4a4a4 30px,
-        #a4a4a4 60px
-      );
-    }
-
-    #slide5 .slide-background {
-      background: url(escheresque_ste.png);
-    }
-
-    #slide6 .slide-background {
-      background: url(abstract-q-c-1920-1080-7.jpg);
-    }
-
-    #slide7 .slide-background {
-      background: #dddddd;
-    }
-
-    #slide8 .slide-background {
-      background-image: repeating-linear-gradient(
-        -45deg,
-        #ffdead,
-        #ffdead 30px,
-        #efcead 30px,
-        #efcead 60px
-      );
-    }
-
-    #slide9 .slide-background {
-      background-image: repeating-linear-gradient(
-        45deg,
-        #85ade6,
-        #85ade6 30px,
-        #7199d2 30px,
-        #7199d2 60px
-      );
-    }
-
-    #slide10 .slide-background {
-      background-image: repeating-linear-gradient(
-        15deg,
-        #111111,
-        #111111 30px,
-        #222222 30px,
-        #222222 60px
-      );
-    }
-
-    #slide11 .slide-background {
-      background: #cccccc;
-    }
-
-    #slide11a .slide-background {
-      background-image: repeating-linear-gradient(
-        -45deg,
-        #fff8dc,
-        #fff8dc 30px,
-        #fff0cc 30px,
-        #fff0cc 60px
-      );
-    }
-
-    #slide12 .slide-background {
-      background-image: repeating-linear-gradient(
-        15deg,
-        #daf7a6,
-        #daf7a6 30px,
-        #caf796 30px,
-        #caf796 60px
-      );
-    }
-
-    #slide-last .slide-background {
-      background: #ffffff;
-    }
-
-  </style>
   <section id="slides-wrapper">
     <div id="slide1" class="slide short">
-      <style type="text/css">
-        #slide1.slide.short {
-          padding: 20vh 5vw;
-        }
-        @keyframes makeYourSiteMove {
-          5%  { transform: translate(200px, 10px); }
-          10% { transform: translate(-200px, 25px); }
-          15% { transform: translate(100px, 5px); }
-          20% { transform: translate(-150px, -5px); }
-          25% { transform: translate(250px, 20px); }
-          30% { transform: translate(-100px, -10px); }
-          35% { transform: translate(150px, -10px); }
-          40% { transform: translate(-200px, 15px); }
-          45% { transform: translate(300px, 25px); }
-          50% { transform: translate(-150px, 10px); }
-          55% { transform: translate(250px, -5px); }
-          60% { transform: translate(-300px, -5px); }
-          65% { transform: translate(100px, 20px); }
-          70% { transform: translate(-200px, -5px); }
-          75% { transform: translate(300px, 5px); }
-          80% { transform: translate(-100px, -5px); }
-          85% { transform: translate(200px, 5px); }
-          90% { transform: translate(-150px, -15px); }
-        }
-        #slide1 .title  {
-          -webkit-animation-name:  makeYourSiteMove;
-          animation-name:  makeYourSiteMove;
-          -webkit-animation-duration: 5s;
-          animation-duration: 5s;
-          -webkit-animation-delay: 2s;
-          animation-delay: 2s;
-          -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="title">
         <h2 class="light-text text-align-center">CSS on the Move</h2>
@@ -396,14 +41,9 @@
     </div>
 
     <div id="slide2" class="slide short">
-      <style type="text/css">
-        #slide2 .slide-image {
-          transform: translateX(20vw) translateY(5vh) translateZ(170px);
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
-        <div class="slide-text dark-text">
+        <div class="slide-text dark-text mt-5">
           <h2>Assumptions</h2>
           <p>For the sake of the course, I'm assuming some familiarity with these concepts:</p>
           <ul>
@@ -418,26 +58,6 @@
     </div>
 
     <div id="slide3" class="slide">
-      <style type="text/css">
-        #slide3 a, #slide3 a:link, #slide3 a:active, #slide3 a:hover, #slide3 a:visited {
-          color: #1111aa;
-        }
-        #slide3 ul {
-          color: #ffffff;
-        }
-        #slide3 img {
-          position: absolute;
-          top: 0%;
-          left: 0%;
-          box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.7);
-        }
-        #slide3 img.firstWebpage {
-          transform: translateX(20vw) translateY(-20vh) translateZ(50px) scale(0.35) rotate(-2deg);
-        }
-        #slide3 img.virtualLibrary {
-          transform: translateX(30vw) translateY(-12vh) translateZ(20px) scale(0.4) rotate(5deg)
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -451,9 +71,7 @@
               <li><a href="http://broadcast.rackspace.com/blog/HTMLtimeline/index.html">History Infographic</a></li>
               <li><a href="http://vlib.org/">The WWW Virtual Library</a></li>
             </ul>
-            <li>font and style added in HTML 3.2</li>
-            <li>Browser wars</li>
-            <li>Technologies come and go</li>
+            <li>Font and style added in HTML 3.2 (1997)</li>
           </ul>
         </div>
         <div class="slide-image">
@@ -464,109 +82,6 @@
     </div>
 
     <div id="slide4" class="slide">
-      <style type="text/css">
-        #slide4 .slide-text div > * {
-          vertical-align: middle;
-          line-height: normal;
-        }
-        #slide4 .slide-text div {
-          box-sizing: unset;
-        }
-        .roundedCorners div {
-          display: inline-block;
-          width: 150px;
-          height: 100px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px 25px;
-          border: 5px solid #1122dd;
-          text-align: center;
-        }
-        .roundedCorners1 {
-          border-radius: 20px;
-        }
-        .roundedCorners2 {
-          border-radius: 50px;
-          background: #1122dd;
-          color: #ffffff;
-        }
-        .roundedCorners3 {
-          border-radius: 0px 20px 50px 20px;
-        }
-        .roundedCorners4 {
-          border-radius: 100px/30px;
-          background: #1122dd;
-          color: #ffffff;
-        }
-
-        .gradient div {
-          display: inline-block;
-          width: 160px;
-          height: 110px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px 25px;
-          text-align: center;
-          color: #ffffff;
-        }
-        .gradient1 {
-          background: -webkit-linear-gradient(#ff0000, #0000ff); /* For Safari 5.1 to 6.0 */
-          background: -o-linear-gradient(#ff0000, #0000ff); /* For Opera 11.1 to 12.0 */
-          background: -moz-linear-gradient(#ff0000, #0000ff); /* For Firefox 3.6 to 15 */
-          background: linear-gradient(#ff0000, #0000ff); /* Standard syntax */
-        }
-        .gradient2 {
-          background: -webkit-linear-gradient(left top, #ff0000, #0000ff); /* For Safari 5.1 to 6.0 */
-          background: -o-linear-gradient(bottom right, #ff0000, #0000ff); /* For Opera 11.1 to 12.0 */
-          background: -moz-linear-gradient(bottom right, #ff0000, #0000ff); /* For Firefox 3.6 to 15 */
-          background: linear-gradient(to bottom right, #ff0000, #0000ff); /* Standard syntax */
-        }
-        .gradient3 {
-          background: -webkit-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Safari 5.1 to 6.0 */
-          background: -o-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Opera 11.1 to 12.0 */
-          background: -moz-radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* For Firefox 3.6 to 15 */
-          background: radial-gradient(#ff0000, rgba(0,0,255,0.5), #00ff00); /* Standard syntax */
-        }
-
-        .boxShadow div {
-          display: inline-block;
-          width: 160px;
-          height: 110px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px 25px;
-          background: #00ff00;
-          text-align: center;
-        }
-        .boxShadow1 {
-          box-shadow: 7px 7px #0000ff;
-        }
-        .boxShadow2 {
-          box-shadow: 7px 7px 5px 7px #0000ff;
-        }
-        .boxShadow3 {
-          box-shadow: 7px 7px 0px 10px #0000ff;
-        }
-        .boxShadow4 {
-          box-shadow: 10px 10px 5px 5px #0000ff inset;
-        }
-
-        .textShadow div {
-          clear: both;
-          display: inline-block;
-          width: 190px;
-          height: 110px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px;
-        }
-        .textShadow1 {
-          text-shadow: 2px 2px;
-        }
-        .textShadow2 {
-          text-shadow: 1px 1px 10px #0000ff;
-        }
-        .textShadow3 {
-          color: #ffffff;
-          text-shadow: 2px 2px 2px #000000, 4px 4px 4px #888888, 8px 8px 10px #ff0000, 0px 0px 30px #00ff00;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -578,16 +93,36 @@
             <div class="roundedCorners4">Elliptical Corners</div>
           </div>
           <div class="gradient">
-            <div class="gradient1">Strait</div>
-            <div class="gradient2">Diagonal</div>
-            <div class="gradient3">Angle and Transparency</div>
+            <div class="gradient1 with-tool">Straight
+              <aside class="tool">
+                <span class="text-secondary">/* For Safari 5.1 to 6.0 */</span><br>
+                <span class="text-danger">background: -webkit-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* For Opera 11.1 to 12.0 */</span><br>
+                <span class="text-danger">background: -o-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* For Firefox 3.6 to 15 */</span><br>
+                <span class="text-danger">background: -moz-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* Standard syntax */</span><br>
+                background: linear-gradient(#ff0000, #0000ff);
+              </aside>
+            </div>
+            <div class="gradient2 with-tool">
+              Diagonal
+              <aside class="tool">
+                background: linear-gradient(to bottom right, #f00, #00f);
+              </aside>
+            </div>
+            <div class="gradient3 with-tool">Angle and Transparency
+              <aside class="tool">
+                background: radial-gradient(#f00, rgba(0,0,255,0.5), #0f0);
+              </aside>
+            </div>
           </div>
-          <div class="boxShadow">
+          <!-- <div class="boxShadow">
             <div class="boxShadow1">Basic</div>
             <div class="boxShadow2">With a little blur</div>
             <div class="boxShadow3">Oversized</div>
             <div class="boxShadow4">Inset</div>
-          </div>
+          </div> -->
           <div class="textShadow">
             <div class="textShadow1">Simple Drop Shadow</div>
             <div class="textShadow2">With Some Style</div>
@@ -598,97 +133,6 @@
     </div>
 
     <div id="slide4a" class="slide">
-      <style type="text/css">
-        #slide4a a, #slide4 a:link, #slide4 a:active, #slide4 a:hover, #slide4 a:visited {
-          color: #eeeeff;
-        }
-        #slide4a ul {
-          color: #ffffff;
-        }
-
-        #slide4a .slide-text div > div {
-          vertical-align: middle;
-          line-height: normal;
-        }
-        #slide4a .slide-text div {
-          box-sizing: unset;
-        }
-
-        .shapes div {
-          display: inline-block;
-          margin: 5px 20px 25px 5px;
-        }
-
-        .circle {
-          width: 200px;
-          height: 200px;
-          border-radius: 50%;
-          background: #ff5555;
-        }
-        .triangle {
-          width: 0;
-          height: 0;
-          border-left: 100px solid transparent;
-          border-right: 100px solid transparent;
-          border-bottom: 200px solid #273f12;
-        }
-        .speech-bubble {
-          position: relative;
-          width: 200px;
-          height: 170px;
-          background: #ffddbb;
-          border-radius: 10px;
-          border: 2px solid #6980fe;
-        }
-        .speech-bubble div {
-          margin-left: 40px;
-        }
-        .speech-bubble:before {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 0;
-          border-top: 25px solid transparent;
-          border-right: 40px solid #6980fe;
-          border-bottom: 25px solid transparent;
-          margin: 15px 0px 0px -40px;
-        }
-        .speech-bubble:after {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 0;
-          border-top: 23px solid transparent;
-          border-right: 38px solid #ffddbb;
-          border-bottom: 23px solid transparent;
-          margin: 17px 0px 0px -37px;
-        }
-        .egg {
-          display:block;
-          width: 150px;
-          height: 200px;
-          background-color: #6980fe;
-          border-radius: 75px 75px 75px 75px / 120px 120px 80px 80px;   /* vs width / vs height */
-        }
-        .odd-shape {
-          background: #746d0c;
-          border-radius: 10em / 3em 7em 5em 12em;
-          width: 200px;
-          height: 100px;
-        }
-        .pacman {
-          width: 0px;
-          height: 0px;
-          border-right: 100px solid transparent;
-          border-top: 100px solid #fff100;
-          border-left: 100px solid #fff100;
-          border-bottom: 100px solid #fff100;
-          border-top-left-radius: 100px;
-          border-top-right-radius: 100px;
-          border-bottom-left-radius: 100px;
-          border-bottom-right-radius: 100px;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -696,121 +140,24 @@
            <div class="shapes">
             <div class="circle"></div>
             <div class="triangle"></div>
-            <div class="speech-bubble"></div>
+            <div class="speech-bubble"></div><br>
             <div class="egg"></div>
             <div class="pacman"></div>
-            <div class="odd-shape"></div>
-            <br />
-            <br />
-            <br />
-            <ul>
+            <!-- <div class="odd-shape"></div> -->
+            <!-- <ul>
               <li><a href="https://codepen.io/chriscoyier/pen/lotjh">triangle explination</a></li>
               <li><a href="https://css-tricks.com/examples/ShapesOfCSS/">shape examples</a></li>
               <li><a href="https://1stwebdesigner.com/css-shapes/">more shape examples</a></li>
               <li><a href="http://www.cssportal.com/css3-shapes/">and more shapes</a></li>
               <li><a href="https://alistapart.com/article/css-shapes-101">shape-outside</a></li>
               <li><a href="https://codepen.io/trevanhetzel/pen/eosmJ">icon examples</a></li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>
     </div>
 
     <div id="slide5" class="slide short">
-      <style type="text/css">
-        #slide5 .wrapper-2d
-        {
-          position: relative;
-          display: inline-block;
-          width: 200px;
-          height: 200px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px 25px;
-        }
-        #slide5 .example
-        {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 150px;
-          height: 100px;
-          padding: 5px;
-        }
-        #slide5 .original
-        {
-          background-color: rgba(0, 200, 0, 0.4);
-        }
-        #slide5 .transform
-        {
-          background-color: rgba(0, 200, 0, 1.0);
-        }
-        #slide5 .translate .transform
-        {
-          -ms-transform: translate(30px, 50px);
-          -webkit-transform: translate(30px, 50px);
-          transform: translate(30px, 50px);
-        }
-        #slide5 .rotate .transform
-        {
-          -ms-transform: rotate(45deg);
-          -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }
-        #slide5 .scale .transform
-        {
-          -ms-transform: scale(0.5, 2);
-          -webkit-transform: scale(0.5, 2);
-          transform: scale(0.5, 2);
-        }
-        #slide5 .skew .transform
-        {
-          -ms-transform: skew(10deg, 25deg);
-          -webkit-transform: skew(10deg, 25deg);
-          transform: skew(10deg, 25deg);
-        }
-
-        input.show
-        {
-          display: none;
-        }
-        #slide5 .codeExample
-        {
-          position: absolute;
-          top: 0vh;
-          left: 40vw;
-          width: 50vw;
-          height: 55vh;
-          padding: 10px 20px;
-          background: #ffffff;
-          box-shadow: 1px 1px 10px #000000;
-          transition: all 0.5s ease-in-out;
-        }
-        #slide5 #translateShow ~ .codeExample.translate,
-        #slide5 #rotateShow ~ .codeExample.rotate,
-        #slide5 #scaleShow ~ .codeExample.scale,
-        #slide5 #skewShow ~ .codeExample.skew
-        {
-          transform: scale(0);
-        }
-        #slide5 #translateShow:checked ~ .codeExample.translate,
-        #slide5 #rotateShow:checked ~ .codeExample.rotate,
-        #slide5 #scaleShow:checked ~ .codeExample.scale,
-        #slide5 #skewShow:checked ~ .codeExample.skew
-        {
-          transform: scale(1.0);
-        }
-        #slide5 #translateShow:checked ~ .wrapper-2d.translate > .example.transform > label#translateShowLabel,
-        #slide5 #rotateShow:checked ~ .wrapper-2d.rotate > .example.transform > label#rotateShowLabel,
-        #slide5 #scaleShow:checked ~ .wrapper-2d.scale > .example.transform > label#scaleShowLabel,
-        #slide5 #skewShow:checked ~ .wrapper-2d.skew > .example.transform > label#skewShowLabel
-        {
-          padding: 3px 5px;
-          background: #0000ff;
-          border: 1px solid #ff0000;
-          border-radius: 10px;
-          color: #ffffff;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -820,28 +167,28 @@
             <div class="example original">Original</div>
             <div class="example transform">
               <label for="translateShow" id="translateShowLabel">Translate</label>
-            </div><br />
+            </div><br>
           </div>
           <input id="rotateShow" class="show" type="checkbox" />
           <div class="wrapper-2d rotate">
             <div class="example original">Original</div>
             <div class="example transform">
               <label for="rotateShow" id="rotateShowLabel">Rotate</label>
-            </div><br />
-          </div><br />
+            </div><br>
+          </div><br>
           <input id="scaleShow" class="show" type="checkbox" />
           <div class="wrapper-2d scale">
             <div class="example original">Original</div>
             <div class="example transform">
               <label for="scaleShow" id="scaleShowLabel">Scale</label>
-            </div><br />
+            </div><br>
           </div>
           <input id="skewShow" class="show" type="checkbox" />
           <div class="wrapper-2d skew">
             <div class="example original">Original</div>
             <div class="example transform">
               <label for="skewShow" id="skewShowLabel">Skew</label>
-            </div><br />
+            </div><br>
           </div>
           <div class="codeExample base">
             Click on the transform to see the CSS
@@ -863,82 +210,16 @@
     </div>
 
     <div id="slide6" class="slide short">
-      <style type="text/css">
-        #slide6 .wrapper-3d
-        {
-          position: relative;
-          position: relative;
-          display: inline-block;
-          width: 400px;
-          height: 400px;
-          margin: 5px 20px 25px 5px;
-          padding: 10px 25px;
-        }
-        #slide6 .original
-        {
-          position: relative;
-          width: 250px;
-          height: 250px;
-          margin: 30px;
-          padding: 10px;
-          background-color: rgba(255, 200, 0, 0.4);
-          border: 1px solid #00ff00;
-          -webkit-perspective: 150px;
-          perspective: 150px;
-          -webkit-perspective-origin: 20% 20%;
-          perspective-origin: 20% 20%;
-        }
-        #slide6 .perspective
-        {
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          padding: 50px;
-          border: 1px solid #00ff00;
-          background-color: rgba(255, 200, 0, 1.0);
-          -webkit-transform: rotateX(45deg);
-          transform: rotateX(45deg);
-        }
-
-        #slide6 .codeExample
-        {
-          position: absolute;
-          top: 0vh;
-          left: 40vw;
-          width: 50vw;
-          height: 55vh;
-          padding: 10px 20px;
-          background: #ffffff;
-          box-shadow: 1px 1px 10px #000000;
-          transition: all 0.5s ease-in-out;
-        }
-        #slide6 #multiple3dShow ~ .codeExample.multiple3d
-        {
-          transform: scale(0);
-        }
-        #slide6 #multiple3dShow:checked ~ .codeExample.multiple3d
-        {
-          transform: scale(1.0);
-        }
-        #multiple3dShow:checked ~ .wrapper-3d.multiple3d > .original > .perspective > #multiple3dShowLabel
-        {
-          padding: 3px 5px;
-          background: #0000ff;
-          border: 1px solid #ff0000;
-          border-radius: 10px;
-          color: #ffffff;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
-          <h2 class="light-text">3D Transforms</h2>
+          <h2 class="light-text">3D Transform</h2>
           <input id="multiple3dShow" class="show" type="checkbox" />
           <div class="wrapper-3d multiple3d">
             <div class="original">
               Original
               <div class="perspective">
-                <label for="multiple3dShow" id="multiple3dShowLabel">Multiple 3D</label>
+                <label for="multiple3dShow" id="multiple3dShowLabel">3D Change</label>
               </div>
             </div>
           </div>
@@ -947,14 +228,12 @@
           </div>
           <div class="codeExample multiple3d">
             <pre>
-.original
-{
+.original {
   position: relative;
   perspective: 150px;
   perspective-origin: 20% 20%;
 }
-.perspective
-{
+.perspective {
   position: absolute;
   transform: rotateX(45deg);
 }
@@ -965,11 +244,6 @@
     </div>
 
     <div id="slide7" class="slide short">
-      <style type="text/css">
-        #slide7 a, #slide7 a:link, #slide7 a:active, #slide7 a:hover, #slide7 a:visited {
-          color: #000011;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -989,15 +263,6 @@
     </div>
 
     <div id="slide9" class="slide short">
-      <style type="text/css">
-        #slide9 a, #slide9 a:link, #slide9 a:active, #slide9 a:hover, #slide9 a:visited {
-          color: #eeeeff;
-        }
-        #slide9 ul {
-          color: #ffffff;
-        }
-
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -1019,71 +284,24 @@
     </div>
 
     <div id="slide8" class="slide short">
-      <style type="text/css">
-        #slide8 .slide-text .immediate,
-        #slide8 .slide-text .transition {
-          display: inline-block;
-          position: relative;
-          width: 220px;
-          height: 180px;
-          margin: 5px 20px 25px 5px;
-          padding: 40px;
-          background-color: #ff0000;
-          border-style: solid;
-          border-width: 10px;
-          border-color: #00ff00;
-          border-radius: 20px;
-          text-align: center;
-          color: #ffffff;
-        }
-        #slide8 .slide-text .transition {
-          -webkit-transition: background-color 0.5s, border-color 0.5s, border-style 0.5s, box-shadow 0.5s;
-          transition: background-color 0.5s, border-color 0.5s, border-style 0.5s, box-shadow 0.5s;
-        }
-        #slide8 .slide-text .immediate:hover,
-        #slide8 .slide-text .transition:hover {
-          border-style: dashed;
-          border-color: #ffff00;
-          background-color: #0000ff;
-          box-shadow: 0px 0px 40px #333333;
-        }
-
-        #slide8 .slide-text .codeExample {
-          position: absolute;
-          top: 0vh;
-          left: 40vw;
-          width: 50vw;
-          height: 55vh;
-          padding: 10px 20px;
-          background: #ffffff;
-          box-shadow: 1px 1px 10px #000000;
-          transition: all 0.5s ease-in-out;
-          overflow: auto;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
           <h2 class="dark-text">Transitions</h2>
-          <div class="immediate">immediate<br />hover</div>
-          <div class="transition">with<br /> transition</div>
+          <div class="immediate">immediate<br>hover</div>
+          <div class="transition">with<br> transition</div>
           <div class="codeExample">
             <pre>
-.transition
-{
-  transition: background-color 0.5s, border-color 0.5s,
-        border-style 0.5s, box-shadow 0.5s;
+.transition {
+  transition: background-color 1s, border-color 1s,
+    border-style 1s, box-shadow 1s;
 }
-
-.immediate, .transition
-{
+.immediate, .transition {
   border-style: solid;
   border-color: #00ff00;
   background-color: #ff0000;
 }
-
-.immediate:hover, .transition:hover
-{
+.immediate:hover, .transition:hover {
   border-style: dashed;
   border-color: #ffff00;
   background-color: #0000ff;
@@ -1096,419 +314,32 @@
     </div>
 
     <div id="slide10" class="slide">
-      <style type="text/css">
-        #slide10 .block {
-          position: relative;
-          display: inline-block;
-          width: 200px;
-          height: 200px;
-          margin: 50px;
-        }
-
-        @keyframes squareToCircle {
-          0%  {
-            border-radius: 0 0 0 0;
-            background: #4682b4;
-            transform: rotate(0deg);
-          }
-          25%  {
-            border-radius: 50% 0 0 0;
-            background: #daf7a6;
-            transform: rotate(90deg);
-          }
-          50%  {
-            border-radius: 50% 0 0 50%;
-            background: #ffc300;
-            transform: rotate(180deg);
-          }
-          75%  {
-            border-radius: 50% 0 50% 50%;
-            background: #ff5733;
-            transform: rotate(270deg);
-          }
-          100% {
-            border-radius: 50%;
-            background: #c70039;
-            transform: rotate(360deg);
-          }
-        }
-
-        #slide10 .circle {
-          animation-name: squareToCircle;
-          animation-duration: 4s;
-          animation-delay: 0s;
-          animation-iteration-count: infinite;
-          animation-timing-function: cubic-bezier(1,.015,.295,1.225);
-          animation-direction: alternate;
-        }
-
-        @keyframes squareToHeartBefore {
-          0% {
-            left: 125px;
-            border-radius: 0 0 0 0;
-            background: #ee1111;
-            transform: rotate(0deg);
-          }
-          30% {
-            left: 125px;
-            border-radius: 0px 125px 0px 0px;
-            background: #ee1111;
-          }
-          60% {
-            left: 125px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(0deg);
-            transform-origin: 0% 0%;
-          }
-          90% {
-            left: 125px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(-45deg);
-            transform-origin: 0% 100%;
-          }
-          100% {
-            left: 125px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(-45deg);
-            transform-origin: 0% 100%;
-          }
-        }
-
-        @keyframes squareToHeartAfter {
-          0% {
-            left: 0px;
-            border-radius: 0 0 0 0;
-            background: #ee1111;
-            transform: rotate(0deg);
-          }
-          30% {
-            left: 0px;
-            border-radius: 125px 0px 0px 0px;
-            background: #ee1111;
-          }
-          60% {
-            left: 0px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(0deg);
-            transform-origin: 0% 0%;
-          }
-          90% {
-            left: 0px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-          }
-          100% {
-            left: 0px;
-            border-radius: 125px 125px 0px 0px;
-            background: #ee1111;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-          }
-        }
-
-        .heart::before,
-        .heart:after {
-          position: absolute;
-          content: "";
-          left: 125px;
-          top: 0px;
-          width: 125px;
-          height: 200px;
-          background: #ee1111;
-        }
-        .heart::after {
-          left: 0px;
-        }
-
-        #slide10 .heart::before {
-          animation-name: squareToHeartBefore;
-          animation-duration: 8s;
-          animation-delay: 0s;
-          animation-iteration-count: infinite;
-          animation-timing-function: linear;
-          animation-direction: alternate;
-        }
-        #slide10 .heart::after {
-          animation-name: squareToHeartAfter;
-          animation-duration: 8s;
-          animation-delay: 0s;
-          animation-iteration-count: infinite;
-          animation-timing-function: linear;
-          animation-direction: alternate;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
           <h2 class="light-text">Animation</h2>
           <div class="block circle"></div>
           <div class="block heart"></div>
-          <br />
-          <br />
-          <br />
-          <a href="https://webdesign.tutsplus.com/tutorials/a-beginners-introduction-to-css-animation--cms-21068?utm_source=CSS-Weekly&utm_campaign=Issue-114&utm_medium=email" class="light-text">based on</a><br />
+
+          <div class="accordion-wrapper">
+            <div class="card" id="accordion-card">
+              <div class="card-header">
+                Watch the arrow on the right side
+                <div class="twirl-arrow"></div>
+              </div>
+              <div class="card-body">
+                <p class="p-3">
+                  Practical example.  The transition has been slowed down to 2 seconds.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- <a href="https://webdesign.tutsplus.com/tutorials/a-beginners-introduction-to-css-animation--cms-21068?utm_source=CSS-Weekly&utm_campaign=Issue-114&utm_medium=email" class="light-text text-decoration-underline">based on this tutorial</a><br> -->
         </div>
       </div>
     </div>
 
     <div id="slide11" class="slide">
-      <style type="text/css">
-        #slide11 .block {
-          position: relative;
-          display: inline-block;
-          margin: 50px;
-          background: none;
-        }
-
-        @keyframes spin {
-          0% { transform: rotate(0deg);}
-          100% { transform: rotate(360deg);}
-        }
-
-        .loader {
-          border: 16px solid #f3f3f3;
-          border-top: 16px solid #0000ff;
-          border-radius: 50%;
-          width: 120px;
-          height: 120px;
-          animation: spin 4s linear infinite;
-        }
-
-        .loader1d {
-          border: 10px solid #f3f3f3;
-          border-top: 10px solid #0000ff;
-          border-radius: 50%;
-          width: 120px;
-          height: 120px;
-          animation: spin 4s linear infinite;
-          animation-direction: reverse;
-        }
-        .loader1c {
-          border: 10px solid #f3f3f3;
-          border-top: 10px solid #00ff00;
-          border-radius: 50%;
-          width: 100px;
-          height: 100px;
-        }
-        .loader1b {
-          border: 10px solid #f3f3f3;
-          border-top: 10px solid #ff0000;
-          border-radius: 50%;
-          width: 80px;
-          height: 80px;
-        }
-        .loader1a {
-          border: 10px solid #f3f3f3;
-          border-top: 10px solid #ff8800;
-          border-radius: 50%;
-          width: 60px;
-          height: 60px;
-        }
-
-        .loader2 {
-          border: 10px solid #f3f3f3;
-          border-radius: 50%;
-        }
-        .loader2.h {
-          border-top: 10px solid #0000ff;
-          width: 150px;
-          height: 150px;
-          animation: spin 4s linear infinite reverse;
-        }
-        .loader2.g {
-          border-top: 10px solid #0000ff;
-          width: 130px;
-          height: 130px;
-          animation: spin 2s linear infinite;
-        }
-        .loader2.f {
-          border-top: 10px solid #00ff00;
-          width: 110px;
-          height: 110px;
-          animation: spin 2s linear 0.5s infinite reverse;
-        }
-        .loader2.e {
-          border-top: 10px solid #00ff00;
-          width: 90px;
-          height: 90px;
-          animation: spin 2s linear 1.0s infinite;
-        }
-        .loader2.d {
-          border-top: 10px solid #ff0000;
-          width: 70px;
-          height: 70px;
-          animation: spin 2s linear 1.5s infinite reverse;
-        }
-        .loader2.c {
-          border-top: 10px solid #ff0000;
-          width: 50px;
-          height: 50px;
-          animation: spin 2s linear 2.0s infinite;
-        }
-        .loader2.b {
-          border-top: 10px solid #ff8800;
-          width: 30px;
-          height: 30px;
-          animation: spin 2s linear 2.5s infinite reverse;
-        }
-        .loader2.a {
-          border-top: 10px solid #ff8800;
-          width: 10px;
-          height: 10px;
-          animation: spin 2s linear 3.0s infinite;
-        }
-
-        .loader3 {
-          border: 10px solid #f3f3f3;
-          border-radius: 50%;
-        }
-        .loader3.h {
-          border-top: 10px solid #0000ff;
-          width: 150px;
-          height: 150px;
-          animation: spin3h 4s linear infinite;
-        }
-        .loader3.g {
-          border-top: 10px solid #0000ff;
-          width: 130px;
-          height: 130px;
-          animation: spin3g 2s linear infinite reverse;
-        }
-        .loader3.f {
-          border-top: 10px solid #00ff00;
-          width: 110px;
-          height: 110px;
-          animation: spin3f 2s linear infinite;
-        }
-        .loader3.e {
-          border-top: 10px solid #00ff00;
-          width: 90px;
-          height: 90px;
-          animation: spin3e 2s linear infinite reverse;
-        }
-        .loader3.d {
-          border-top: 10px solid #ff0000;
-          width: 70px;
-          height: 70px;
-          animation: spin3d 2s linear infinite
-        }
-        .loader3.c {
-          border-top: 10px solid #ff0000;
-          width: 50px;
-          height: 50px;
-          animation: spin3c 2s linear infinite reverse
-        }
-        .loader3.b {
-          border-top: 10px solid #ff8800;
-          width: 30px;
-          height: 30px;
-          animation: spin3b 2s linear infinite
-        }
-        .loader3.a {
-          border-top: 10px solid #ff8800;
-          width: 10px;
-          height: 10px;
-          animation: spin3a 2s linear infinite reverse
-        }
-        @keyframes spin3h {
-          0% { transform: rotate(-45deg);}
-          100% { transform: rotate(315deg);}
-        }
-        @keyframes spin3g {
-          0% { transform: rotate(90deg);}
-          100% { transform: rotate(450deg);}
-        }
-        @keyframes spin3f {
-          0% { transform: rotate(180deg);}
-          100% { transform: rotate(540deg);}
-        }
-        @keyframes spin3e {
-          0% { transform: rotate(270deg);}
-          100% { transform: rotate(630deg);}
-        }
-        @keyframes spin3d {
-          0% { transform: rotate(360deg);}
-          100% { transform: rotate(720deg);}
-        }
-        @keyframes spin3c {
-          0% { transform: rotate(450deg);}
-          100% { transform: rotate(810deg);}
-        }
-        @keyframes spin3b {
-          0% { transform: rotate(540deg);}
-          100% { transform: rotate(900deg);}
-        }
-        @keyframes spin3a {
-          0% { transform: rotate(630deg);}
-          100% { transform: rotate(990deg);}
-        }
-
-        .loader4 {
-          border: 10px solid #f3f3f3;
-        }
-        .loader4.h {
-          border-top: 10px solid #0000ff;
-          border-bottom: 10px solid #0000ff;
-          width: 150px;
-          height: 150px;
-          animation: spin 4s linear infinite reverse;
-        }
-        .loader4.g {
-          border-top: 10px solid #0000ff;
-          border-bottom: 10px solid #0000ff;
-          width: 130px;
-          height: 130px;
-          animation: spin 2s linear infinite;
-        }
-        .loader4.f {
-          border-top: 10px solid #00ff00;
-          border-bottom: 10px solid #00ff00;
-          width: 110px;
-          height: 110px;
-          animation: spin 2s linear 0.5s infinite reverse;
-        }
-        .loader4.e {
-          border-top: 10px solid #00ff00;
-          border-bottom: 10px solid #00ff00;
-          width: 90px;
-          height: 90px;
-          animation: spin 2s linear 1.0s infinite;
-        }
-        .loader4.d {
-          border-top: 10px solid #ff0000;
-          border-bottom: 10px solid #ff0000;
-          width: 70px;
-          height: 70px;
-          animation: spin 2s linear 1.5s infinite reverse;
-        }
-        .loader4.c {
-          border-top: 10px solid #ff0000;
-          border-bottom: 10px solid #ff0000;
-          width: 50px;
-          height: 50px;
-          animation: spin 2s linear 2.0s infinite;
-        }
-        .loader4.b {
-          border-top: 10px solid #ff8800;
-          border-bottom: 10px solid #ff8800;
-          width: 30px;
-          height: 30px;
-          animation: spin 2s linear 2.5s infinite reverse;
-        }
-        .loader4.a {
-          border-top: 10px solid #ff8800;
-          border-bottom: 10px solid #ff8800;
-          width: 10px;
-          height: 10px;
-          animation: spin 2s linear 3.0s infinite;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -1538,7 +369,7 @@
               </div>
             </div>
           </div>
-          <div class="block loader3 h">
+          <!-- <div class="block loader3 h">
             <div class="loader3 g">
               <div class="loader3 f">
                 <div class="loader3 e">
@@ -1553,8 +384,8 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="block loader4 h">
+          </div> -->
+          <!-- <div class="block loader4 h">
             <div class="loader4 g">
               <div class="loader4 f">
                 <div class="loader4 e">
@@ -1569,358 +400,14 @@
                 </div>
               </div>
             </div>
-          </div>
-          <br />
-          <br />
-          <br />
-          <a href="https://www.w3schools.com/howto/howto_css_loader.asp" class="dark-text">based on</a><br />
+          </div> -->
+          <br><br><br>
+          <a href="https://www.w3schools.com/howto/howto_css_loader.asp" class="dark-text">based on</a><br>
         </div>
       </div>
     </div>
 
-    <div id="slide11a" class="slide short">
-      <style type="text/css">
-        .block {
-          position: relative;
-          display: inline-block;
-          margin: 50px;
-        }
-
-        .loader-1 {
-          width: 50px;
-          height: 80px;
-          border-radius: 0%;
-          background: #44aadd;
-          position: relative;
-          animation: loader-1 1.5s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-1:before {
-          content: '';
-          width: 25px;
-          height: 25px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-1:after {
-          content: '';
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #ff0000;
-          margin: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-        }
-        @keyframes loader-1 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-
-        .loader-2 {
-          width: 50px;
-          height: 80px;
-          border-radius: 0%;
-          background: #44aadd;
-          position: relative;
-          animation: loader-2 1.5s infinite linear reverse;
-          transform: translateZ(0);
-        }
-        .loader-2:before {
-          content: '';
-          width: 25px;
-          height: 25px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-2:after {
-          content: '';
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #ff0000;
-          margin: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-        }
-        @keyframes loader-2 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-
-        .loader-3d {
-          width: 155px;
-          height: 155px;
-          border-radius: 0%;
-          background: #ff8800;
-          position: relative;
-          animation: loader-3 10s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-3c {
-          width: 125px;
-          height: 125px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #ff00ff;
-          position: relative;
-          animation: loader-3 7s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-3b {
-          width: 95px;
-          height: 95px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #00ff00;
-          position: relative;
-          animation: loader-3 4s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-3a {
-          width: 65px;
-          height: 65px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #44aadd;
-          position: relative;
-          animation: loader-3 1s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-3a:before {
-          content: '';
-          width: 25px;
-          height: 25px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-3a:after {
-          content: '';
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #ff0000;
-          margin: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-        }
-        @keyframes loader-3 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-
-        .loader-4d {
-          width: 155px;
-          height: 155px;
-          border-radius: 0%;
-          background: #ff8800;
-          position: relative;
-          animation: loader-4 1.5s infinite linear reverse;
-          transform: translateZ(0);
-        }
-        .loader-4c {
-          width: 125px;
-          height: 125px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #ff00ff;
-          position: relative;
-          animation: loader-4 1.5s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-4b {
-          width: 95px;
-          height: 95px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #00ff00;
-          position: relative;
-          animation: loader-4 1.5s infinite linear reverse;
-          transform: translateZ(0);
-        }
-        .loader-4a {
-          width: 65px;
-          height: 65px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #44aadd;
-          position: relative;
-          animation: loader-4 1.5s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-4a:before {
-          content: '';
-          width: 25px;
-          height: 25px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-4a:after {
-          content: '';
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #ff0000;
-          margin: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-        }
-        @keyframes loader-4 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-
-        .loader-5d {
-          width: 155px;
-          height: 155px;
-          border-radius: 0%;
-          background: #ff8800;
-          position: relative;
-          animation: loader-5 4.3s infinite linear reverse;
-          transform: translateZ(0);
-        }
-        .loader-5d:before {
-          content: '';
-          width: 30px;
-          height: 30px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-5c {
-          width: 125px;
-          height: 125px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #ff00ff;
-          position: relative;
-          animation: loader-5 3.2s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-5c:before {
-          content: '';
-          width: 30px;
-          height: 30px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-5b {
-          width: 95px;
-          height: 95px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #00ff00;
-          position: relative;
-          animation: loader-5 2.1s infinite linear reverse;
-          transform: translateZ(0);
-        }
-        .loader-5b:before {
-          content: '';
-          width: 30px;
-          height: 30px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-5a {
-          width: 65px;
-          height: 65px;
-          border-radius: 0%;
-          margin: 15px;
-          background: #44aadd;
-          position: relative;
-          animation: loader-5 1.0s infinite linear;
-          transform: translateZ(0);
-        }
-        .loader-5a:before {
-          content: '';
-          width: 25px;
-          height: 25px;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: #ffffff;
-          border-radius: 100% 0 0 0;
-        }
-        .loader-5a:after {
-          content: '';
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background: #ff0000;
-          margin: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-        }
-        @keyframes loader-5 {
-          0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-          }
-          100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-          }
-        }
-      </style>
+    <!-- <div id="slide11a" class="slide short">
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -1963,17 +450,15 @@
               </div>
             </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <a href="https://codepen.io/ruslan_khomiak/embed/MbqWaK/?height=254&theme-id=0&default-tab=css,result&embed-version=2#0" class="dark-text">based on</a><br />
+          <br>
+          <br>
+          <br>
+          <a href="https://codepen.io/ruslan_khomiak/embed/MbqWaK/?height=254&theme-id=0&default-tab=css,result&embed-version=2#0" class="dark-text">based on</a><br>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div id="slide12" class="slide short">
-      <style type="text/css">
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
@@ -1989,95 +474,13 @@
     </div>
 
     <div id="slide-last" class="slide">
-      <style type="text/css">
-        .rollingSmiley {
-          width: 1000px;
-        }
-
-        @keyframes rollingSmiley {
-          50% {
-            -webkit-transform: translate(872px, 0px) rotate(2.0turn);
-            transform: translate(872px, 0px) rotate(2.0turn);
-          }
-          100% {
-            -webkit-transform: translate(0px, 0px) rotate(0turn);
-            transform: translate(0px, 0px) rotate(0turn);
-          }
-        }
-        .rollingSmileyWrapper img {
-          -webkit-animation-name: rollingSmiley;
-          animation-name: rollingSmiley;
-          -webkit-animation-duration: 8s;
-          animation-duration: 8s;
-          animation-delay: 5s;
-          animation-iteration-count: infinite;
-          -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-        }
-
-        .flyingSmileyWrapper {
-          width: 128px;
-          height: 128px;
-        }
-
-        @keyframes flyingSmiley {
-          0% {
-            transform: translate(0px, 50px) scale(0.01);
-          }
-          1% {
-            transform: translate(150px, 0px) scale(0.1);
-          }
-          2% {
-            transform: translate(300px, 10px) scale(0.2);
-          }
-          3% {
-            transform: translate(400px, 40px) scale(0.3);
-          }
-          4% {
-            transform: translate(500px, 70px) scale(0.4);
-          }
-          5% {
-            transform: translate(550px, 110px) scale(0.5);
-          }
-          6% {
-            transform: translate(500px, 160px) scale(0.6);
-          }
-          7% {
-            transform: translate(450px, 200px) scale(0.7);
-          }
-          10% {
-            transform: translate(450px, 250px) scale(1.0) rotate(0turn);
-          }
-          20% {
-            transform: translate(450px, 250px) scale(2.0) rotate(2.5turn);
-          }
-          100% {
-            transform: translate(450px, 250px) scale(1.0) rotate(0turn);
-          }
-        }
-        .flyingSmileyWrapper img {
-          display: inline-block;
-          -webkit-animation-name: flyingSmiley;
-          animation-name: flyingSmiley;
-          -webkit-animation-duration: 8s;
-          animation-duration: 8s;
-          -webkit-animation-delay: 3s;
-          animation-delay: 3s;
-          animation-iteration-count: infinite;
-          -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-          -webkit-transition-timing-function: ease-in-out;
-          transition-timing-function: ease-in-out;
-        }
-      </style>
       <div class="slide-background"></div>
       <div class="slide-content">
         <div class="slide-text">
-          <h2>Thanks!<h2>
+          <h2>Thanks!</h2>
           <ul>
-            <li>Al Wilkinson</li>
-            <li>al@notsofar.net</li>
-            <li>@al_wilkinson</li>
+            <li>Jeremy Moritz</li>
+            <li>jmoritz@naic.org</li>
           </ul>
           <div class="rollingSmileyWrapper"><img src="smileyicon.png" /></div>
           <div class="flyingSmileyWrapper"><img src="smileyicon.png" /></div>
