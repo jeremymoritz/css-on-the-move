@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>CSS On the Move - Jeremy Moritz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="weird-quirk">
+    .<!-- weird edge quirk -->
+  </div>
+
+  <nav id="mainNav">
+    <a href="#slide1">Top</a>
+    <a href="#slide3">History</a>
+    <a href="#slide4">Image Alternatives</a>
+    <a href="#slide5">2D Transforms</a>
+    <a href="#slide6">3D Transforms</a>
+    <a href="#slide7">Measures</a>
+    <a href="#slide9">Show / Hide</a>
+    <a href="#slide8">Transitions</a>
+    <a href="#slide10">Animation</a>
+    <a href="#slide11">Spinners</a>
+    <a href="#slide12">Parallax</a>
+  </nav>
+  <header id="mainHeader">
+    <a href="#mainNav" class="openMenu"><span class="flip">+</span><span class="text">Slides</span></a>
+    <a href="#" class="closeMenu"><span class="flip">--</span><span class="text">Slides</span></a>
+  </header>
+
+  <section id="slides-wrapper">
+    <div id="slide1" class="slide short">
+      <div class="slide-background"></div>
+      <div class="title">
+        <h1 class="light-text text-align-center">CSS on the Move</h1>
+        <h2 class="light-text text-align-center">Jeremy K. Moritz</h2>
+      </div>
+    </div>
+
+    <div id="slide2" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text dark-text mt-5">
+          <h2>Assumptions</h2>
+          <!-- <p>For the sake of the presentation, I'm assuming some familiarity with these concepts:</p> -->
+          <p>Some familiarity with these concepts:</p>
+          <ul>
+            <li>Basic HTML</li>
+            <li>Basic-to-Intermediate CSS</li>
+          </ul>
+        </div>
+        <div class="slide-image">
+          <img src="smiley_128.png" alt="smiley face" />
+        </div>
+      </div>
+    </div>
+
+    <div id="slide3" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">History</h2>
+          <ul>
+            <li>The early days were about making information available, not about style</li>
+            <ul>
+              <li><a href="http://info.cern.ch/hypertext/WWW/TheProject.html">The first webpage</a></li>
+              <li><a href="http://www.w3.org/MarkUp/draft-ietf-iiir-html-01.txt">HTML 1 spec</a></li>
+              <li><a href="http://www.martinrinehart.com/frontend-engineering/engineers/html/html-tag-history.html">HTML Tag List</a></li>
+              <li><a href="http://broadcast.rackspace.com/blog/HTMLtimeline/index.html">History Infographic</a></li>
+              <li><a href="http://vlib.org/">The WWW Virtual Library</a></li>
+            </ul>
+            <li>Font and style added in HTML 3.2 (1997)</li>
+            <li>Pseudo-classes... <pre>:hover, :before, :after, :first-child</pre></li>
+            <li>CSS Animations introduced in 2009 (limited browser support)</li>
+            <li>Browser Prefixes...
+              <div class="white-bg p-3">
+                <pre>
+-webkit-linear-gradient(#e64, #92d);
+-moz-linear-gradient(#e64, #92d);
+-ms-linear-gradient(#e64, #92d);
+-o-linear-gradient(#e64, #92d);
+linear-gradient(#e64, #92d);
+
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e64', endColorstr='#92d');
+                </pre>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="slide-image">
+          <img src="firstWebpage.png" class="firstWebpage" alt="First webpage" />
+          <img src="wwwVirtualLibrary.png" class="virtualLibrary" alt="The WWW Virtual Library" />
+        </div>
+      </div>
+    </div>
+
+    <div id="slide4" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text">Image Alternatives</h2>
+          <div class="roundedCorners">
+            <div class="roundedCorners1">Rounded Corners</div>
+            <div class="roundedCorners2">Over-Rounded Corners</div>
+            <div class="roundedCorners3">Rounded Corners</div>
+            <div class="roundedCorners4">Elliptical Corners</div>
+          </div>
+          <div class="gradient">
+            <div class="gradient1 with-tool">Straight
+              <aside class="tool">
+                <span class="text-secondary">/* For Safari 5.1 to 6.0 */</span><br>
+                <span class="text-danger">background: -webkit-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* For Opera 11.1 to 12.0 */</span><br>
+                <span class="text-danger">background: -o-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* For Firefox 3.6 to 15 */</span><br>
+                <span class="text-danger">background: -moz-linear-gradient(#ff0000, #0000ff);</span><br>
+                <span class="text-secondary">/* Standard syntax */</span><br>
+                background: linear-gradient(#ff0000, #0000ff);
+              </aside>
+            </div>
+            <div class="gradient2 with-tool">
+              Diagonal
+              <aside class="tool">
+                background: linear-gradient(to bottom right, #f00, #00f);
+              </aside>
+            </div>
+            <div class="gradient3 with-tool">Angle and Transparency
+              <aside class="tool">
+                background: radial-gradient(#f00, rgba(0,0,255,0.5), #0f0);
+              </aside>
+            </div>
+          </div>
+          <div class="boxShadow">
+            <div class="boxShadow1">Basic</div>
+            <div class="boxShadow2">With a little blur</div>
+            <div class="boxShadow3">Oversized</div>
+            <div class="boxShadow4">Inset</div>
+          </div>
+          <div class="textShadow">
+            <div class="textShadow1">Simple Drop Shadow</div>
+            <div class="textShadow2">With Some Style</div>
+            <div class="textShadow3">But Not Too Much Style</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide4a" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">Image Alternatives - Shapes</h2>
+           <div class="shapes">
+            <div class="circle"></div>
+            <div class="triangle"></div>
+            <div class="speech-bubble"></div><br>
+            <div class="egg"></div>
+            <div class="pacman"></div>
+            <!-- <div class="odd-shape"></div> -->
+            <!-- <ul>
+              <li><a href="https://codepen.io/chriscoyier/pen/lotjh">triangle explination</a></li>
+              <li><a href="https://css-tricks.com/examples/ShapesOfCSS/">shape examples</a></li>
+              <li><a href="https://1stwebdesigner.com/css-shapes/">more shape examples</a></li>
+              <li><a href="http://www.cssportal.com/css3-shapes/">and more shapes</a></li>
+              <li><a href="https://alistapart.com/article/css-shapes-101">shape-outside</a></li>
+              <li><a href="https://codepen.io/trevanhetzel/pen/eosmJ">icon examples</a></li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide5" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">2D Transforms</h2>
+          <input id="translateShow" class="show" type="checkbox" />
+          <div class="wrapper-2d translate">
+            <div class="example original">Original</div>
+            <div class="example transform">
+              <label for="translateShow" id="translateShowLabel">Translate</label>
+            </div><br>
+          </div>
+          <input id="rotateShow" class="show" type="checkbox" />
+          <div class="wrapper-2d rotate">
+            <div class="example original">Original</div>
+            <div class="example transform">
+              <label for="rotateShow" id="rotateShowLabel">Rotate</label>
+            </div><br>
+          </div><br>
+          <input id="scaleShow" class="show" type="checkbox" />
+          <div class="wrapper-2d scale">
+            <div class="example original">Original</div>
+            <div class="example transform">
+              <label for="scaleShow" id="scaleShowLabel">Scale</label>
+            </div><br>
+          </div>
+          <input id="skewShow" class="show" type="checkbox" />
+          <div class="wrapper-2d skew">
+            <div class="example original">Original</div>
+            <div class="example transform">
+              <label for="skewShow" id="skewShowLabel">Skew</label>
+            </div><br>
+          </div>
+          <div class="codeExample base">
+            Click on the transform to see the CSS
+          </div>
+          <div class="codeExample translate">
+            transform: translate(30px, 50px);
+          </div>
+          <div class="codeExample rotate">
+            transform: rotate(45deg);
+          </div>
+          <div class="codeExample scale">
+            transform: scale(0.5, 2);
+          </div>
+          <div class="codeExample skew">
+            transform: skew(10deg, 25deg);
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide6" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">3D Transform</h2>
+          <input id="multiple3dShow" class="show" type="checkbox" />
+          <div class="wrapper-3d multiple3d">
+            <div class="original">
+              Original
+              <div class="perspective">
+                <label for="multiple3dShow" id="multiple3dShowLabel">Multi-3D</label>
+              </div>
+            </div>
+          </div>
+          <div class="codeExample base">
+            Click on the transform to see the CSS
+          </div>
+          <div class="codeExample multiple3d">
+            <pre>
+.original {
+  position: relative;
+  perspective: 150px;
+  perspective-origin: 20% 20%;
+}
+.perspective {
+  position: absolute;
+  transform: rotateX(45deg);
+}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide7" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark">Units of Measure</h2>
+          <ul>
+            <li><a href="http://www.w3schools.com/cssref/css_units.asp">http://www.w3schools.com/cssref/css_units.asp</a></li>
+            <li>%, px, cm, mm, in, pt, pc</li>
+            <li>em -- relative to the font-size of the element (2em means 2 times the size of the current font)</li>
+            <li>ex -- relative to the x-height of the current font</li>
+            <li>ch -- relative to width of the "0" (zero)</li>
+            <li>rem -- relative to font-size of the root element</li>
+            <li>vh, vw -- represents 1% of the height/width of the viewport</li>
+            <li>vmin, vmax -- represents to 1% of viewport's smaller/larger dimension</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide9" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">Show / Hide</h2>
+          <ul>
+            <li>:target</li>
+            <ul>
+              <li>look at the menu on this page</li>
+              <li><a href="https://codepen.io/trevanhetzel/pen/HFlGA">modal example</a></li>
+            </ul>
+            <li>hidden checkbox</li>
+            <ul>
+              <li><a href="https://codepen.io/trevanhetzel/pen/Lrbjf">navigation menu</a></li>
+              <li><a href="https://codepen.io/trevanhetzel/pen/fgvsA">expandable menu</a></li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide8" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text">Transitions</h2>
+          <div class="immediate">immediate<br>hover</div>
+          <div class="transition">with<br> transition</div>
+          <div class="codeExample">
+            <pre>
+.transition {
+  transition: background-color 1s, border-color 1s,
+    border-style 1s, box-shadow 1s;
+}
+.immediate, .transition {
+  border-style: solid;
+  border-color: #00ff00;
+  background-color: #ff0000;
+}
+.immediate:hover, .transition:hover {
+  border-style: dashed;
+  border-color: #ffff00;
+  background-color: #0000ff;
+  box-shadow: 0px 0px 40px #333333;
+}
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide10" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="light-text">Animation</h2>
+
+          <div class="accordion-wrapper">
+            <div class="card" id="accordion-card">
+              <div class="card-header">
+                Watch the triangle on the right side
+                <div class="twirl-arrow"></div>
+              </div>
+              <div class="card-body">
+                <p class="p-3">
+                  Practical example.  The transition has been slowed down to 2 seconds.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="block circle"></div>
+          <div class="block heart"></div>
+
+          <p><a href="example-styles.css">Example CSS Here</a></p>
+          <!-- <a href="https://webdesign.tutsplus.com/tutorials/a-beginners-introduction-to-css-animation--cms-21068?utm_source=CSS-Weekly&utm_campaign=Issue-114&utm_medium=email" class="light-text text-decoration-underline">based on this tutorial</a><br> -->
+        </div>
+      </div>
+    </div>
+
+    <div id="slide11b" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text mt-5">Animation with Keyframes</h2>
+          <div class="movable-thing-wrapper">
+            <img src="cloud.png" id="this-movable-thing" alt="cloud">
+          </div>
+          <div class="dark-bg light-text">
+            <img src="keyframes-example.png" alt class="keyframes-example">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide11" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text">Spinners</h2>
+          <div class="block loader"></div>
+          <div class="block loader1d">
+            <div class="loader1c">
+              <div class="loader1b">
+                <div class="loader1a">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block loader2 h">
+            <div class="loader2 g">
+              <div class="loader2 f">
+                <div class="loader2 e">
+                  <div class="loader2 d">
+                    <div class="loader2 c">
+                      <div class="loader2 b">
+                        <div class="loader2 a">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="block loader3 h">
+            <div class="loader3 g">
+              <div class="loader3 f">
+                <div class="loader3 e">
+                  <div class="loader3 d">
+                    <div class="loader3 c">
+                      <div class="loader3 b">
+                        <div class="loader3 a">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="block loader4 h">
+            <div class="loader4 g">
+              <div class="loader4 f">
+                <div class="loader4 e">
+                  <div class="loader4 d">
+                    <div class="loader4 c">
+                      <div class="loader4 b">
+                        <div class="loader4 a">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          <br><br><br>
+          <a href="https://www.w3schools.com/howto/howto_css_loader.asp" class="dark-text">Click for Tutorial</a><br>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div id="slide11a" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text">More Spinners</h2>
+          <div class="block loader-1">
+            <div class="block-text">
+            </div>
+          </div>
+          <div class="block loader-2">
+            <div class="block-text">
+            </div>
+          </div>
+          <div class="block loader-3d">
+            <div class="block loader-3c">
+              <div class="block loader-3b">
+                <div class="block loader-3a">
+                  <div class="block-text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block loader-4d">
+            <div class="block loader-4c">
+              <div class="block loader-4b">
+                <div class="block loader-4a">
+                  <div class="block-text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="block loader-5d">
+            <div class="block loader-5c">
+              <div class="block loader-5b">
+                <div class="block loader-5a">
+                  <div class="block-text">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <a href="https://codepen.io/ruslan_khomiak/embed/MbqWaK/?height=254&theme-id=0&default-tab=css,result&embed-version=2#0" class="dark-text">based on</a><br>
+        </div>
+      </div>
+    </div> -->
+
+    <div id="slide12" class="slide short">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2 class="dark-text">Parallax</h2>
+          <ul>
+            <li><a href="http://keithclark.co.uk/articles/pure-css-parallax-websites/">the guide</a></li>
+            <li><a href="http://keithclark.co.uk/articles/practical-css-parallax/">the guide - part 2</a></li>
+            <li><a href="http://keithclark.co.uk/articles/practical-css-parallax/smooth-scroll/#slide-3">the example</a></li>
+            <li><a href="https://codepen.io/keithclark/pen/JycFw">the previous version</a></li>
+          </ul>
+          <h3 class="dark-text mt-5">Any questions?</h2>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide-last" class="slide">
+      <div class="slide-background"></div>
+      <div class="slide-content">
+        <div class="slide-text">
+          <h2>Thanks!</h2>
+          <ul>
+            <li>Jeremy Moritz</li>
+            <li>jmoritz@naic.org</li>
+          </ul>
+          <p>Full Project available on GitHub: <a href="https://github.com/jeremymoritz/css-on-the-move">https://github.com/jeremymoritz/css-on-the-move</a></p>
+          <div class="rollingSmileyWrapper"><img src="smileyicon.png" /></div>
+          <div class="flyingSmileyWrapper"><img src="smileyicon.png" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
