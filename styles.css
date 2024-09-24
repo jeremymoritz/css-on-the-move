@@ -343,7 +343,7 @@ img {
   );
 }
 
-#slide11b .slide-background {
+#slide13 .slide-background {
   background-image: repeating-linear-gradient(45deg, #fdd, #fdd 30px, #ecc 30px, #ecc 60px);
 }
 
@@ -412,7 +412,7 @@ img {
 #slide1.slide.short {
   padding: 20vh 5vw;
 }
-@keyframes makeYourSiteMove {
+@keyframes makeTitleShake {
   5% {
     transform: translate(200px, 10px);
   }
@@ -469,14 +469,13 @@ img {
   }
 }
 #slide1 .title {
-  -webkit-animation-name: makeYourSiteMove;
-  animation-name: makeYourSiteMove;
-  -webkit-animation-duration: 5s;
-  animation-duration: 5s;
-  -webkit-animation-delay: 2s;
-  animation-delay: 2s;
-  -webkit-transition-timing-function: ease-in-out;
+  animation-name: makeTitleShake;
+  animation-duration: 15s;
+  animation-delay: 5s;
   transition-timing-function: ease-in-out;
+}
+#slide1 .title h1 {
+  font-size: 6vw;
 }
 #slide2 .slide-image {
   transform: translateX(20vw) translateY(5vh) translateZ(170px);
@@ -1044,21 +1043,21 @@ input.show {
   background: none;
 }
 
-#slide11b .slide-text div > * {
+#slide13 .slide-text div > * {
   vertical-align: middle;
   line-height: normal;
 }
-#slide11b .slide-text div {
+#slide13 .slide-text div {
   box-sizing: unset;
 }
-#slide11b a,
-#slide11b a:link,
-#slide11b a:active,
-#slide11b a:hover,
-#slide11b a:visited {
+#slide13 a,
+#slide13 a:link,
+#slide13 a:active,
+#slide13 a:hover,
+#slide13 a:visited {
   color: #eeeeff;
 }
-#slide11b ul {
+#slide13 ul {
   color: #ffffff;
 }
 
